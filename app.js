@@ -1,2 +1,5 @@
 const [btn] = document.getElementsByClassName("btn");
-console.log(btn);
+
+btn.addEventListener("click", function (evt) {
+  console.log("Button is clicked");
+});
