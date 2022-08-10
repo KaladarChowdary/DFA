@@ -35,14 +35,16 @@ function changeElementPositionOnDrag(element) {
   };
 }
 
-const circle = createCircle();
-makePositionAbsolute(circle);
-setDraggableTrue(circle);
-changeElementPositionOnDrag(circle);
-addElementToWebPage(circle);
+function addDraggableCircle() {
+  const circle = createCircle();
+  makePositionAbsolute(circle);
+  setDraggableTrue(circle);
+  changeElementPositionOnDrag(circle);
+  addElementToWebPage(circle);
+}
 
 const [btn] = document.getElementsByClassName("btn");
 
 btn.addEventListener("click", function (evt) {
-  console.log("Button is clicked");
+  addDraggableCircle();
 });
