@@ -48,3 +48,9 @@ const [btn] = document.getElementsByClassName("btn");
 btn.addEventListener("click", function (evt) {
   addDraggableCircle();
 });
+
+function createTextElement(name) {
+  const text = document.createElement("p");
+  text.textContent = name;
+  return text;
+}
