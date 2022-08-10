@@ -62,4 +62,4 @@ function createCirclewithName(name) {
   return circle;
 }
 
-console.log(createCirclewithName("s1"));
+addElementToWebPage(createCirclewithName("s1"));
