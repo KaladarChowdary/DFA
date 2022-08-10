@@ -36,7 +36,7 @@ function changeElementPositionOnDrag(element) {
 }
 
 function addDraggableCircle() {
-  const circle = createCircle();
+  const circle = createCirclewithName("s1");
   makePositionAbsolute(circle);
   setDraggableTrue(circle);
   changeElementPositionOnDrag(circle);
@@ -62,4 +62,4 @@ function createCirclewithName(name) {
   return circle;
 }
 
-addElementToWebPage(createCirclewithName("s1"));
+// addElementToWebPage(createCirclewithName("s1"));
