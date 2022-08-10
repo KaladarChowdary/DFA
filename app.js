@@ -58,8 +58,13 @@ function createTextElement(name) {
 function createCirclewithName(name) {
   const circle = createCircle();
   const text = createTextElement(name);
+  makeElementInline(text);
   circle.appendChild(text);
   return circle;
+}
+
+function makeElementInline(element) {
+  element.style.display = "inline";
 }
 
 // addElementToWebPage(createCirclewithName("s1"));
