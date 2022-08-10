@@ -4,16 +4,26 @@ function createCircle() {
   return circle;
 }
 
+function createTextElement(name) {
+  const text = document.createElement("p");
+  text.textContent = name;
+  return text;
+}
+
 function addElementToWebPage(element) {
   document.body.appendChild(element);
 }
 
-function makePositionAbsolute(element) {
-  element.style.position = "absolute";
-}
-
 function setDraggableTrue(element) {
   element.setAttribute("draggable", "true");
+}
+
+function makeElementInline(element) {
+  element.style.display = "inline";
+}
+
+function makePositionAbsolute(element) {
+  element.style.position = "absolute";
 }
 
 function setElementCoordinatesFromEvent(element, event) {
@@ -35,6 +45,14 @@ function changeElementPositionOnDrag(element) {
   };
 }
 
+function createCirclewithName(name) {
+  const circle = createCircle();
+  const text = createTextElement(name);
+  makeElementInline(text);
+  circle.appendChild(text);
+  return circle;
+}
+
 function addDraggableCircle() {
   const circle = createCirclewithName("s1");
   makePositionAbsolute(circle);
@@ -48,23 +66,5 @@ const [btn] = document.getElementsByClassName("btn");
 btn.addEventListener("click", function (evt) {
   addDraggableCircle();
 });
-
-function createTextElement(name) {
-  const text = document.createElement("p");
-  text.textContent = name;
-  return text;
-}
-
-function createCirclewithName(name) {
-  const circle = createCircle();
-  const text = createTextElement(name);
-  makeElementInline(text);
-  circle.appendChild(text);
-  return circle;
-}
-
-function makeElementInline(element) {
-  element.style.display = "inline";
-}
 
 // addElementToWebPage(createCirclewithName("s1"));
