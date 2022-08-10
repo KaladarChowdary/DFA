@@ -54,3 +54,12 @@ function createTextElement(name) {
   text.textContent = name;
   return text;
 }
+
+function createCirclewithName(name) {
+  const circle = createCircle();
+  const text = createTextElement(name);
+  circle.appendChild(text);
+  return circle;
+}
+
+console.log(createCirclewithName("s1"));
