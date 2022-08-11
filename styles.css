@@ -26,3 +26,9 @@
   background-color: red;
   position: absolute;
 }
+
+.l {
+  height: 2px;
+  width: 20px;
+  background-color: darkgreen;
+}
