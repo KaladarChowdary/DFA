@@ -57,5 +57,12 @@ function setElementPostionFromArray(element, postionArray) {
 }
 
 function makeArrayFrom2NumberedString(str) {
-  return str.split(",");
+  const arr = [];
+  for (const s of str.split(",")) {
+    arr.push(Number(s.trim()));
+  }
+  return arr;
 }
+
+const [textBox] = document.getElementsByClassName("textbox");
+// console.log(textBox);
