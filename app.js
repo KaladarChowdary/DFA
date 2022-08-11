@@ -89,3 +89,5 @@ point.addEventListener("click", function (event) {
 line.addEventListener("click", function (event) {
   alert("line button is clicked");
 });
+
+//Need to make sure input to the point is correct
