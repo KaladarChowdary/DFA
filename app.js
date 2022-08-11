@@ -95,3 +95,8 @@ line.addEventListener("click", function (event) {
 function isEmpty(x) {
   return x == "" ? true : false;
 }
+
+function splitStringAtCommaReturnArray(str) {
+  const arr = str.split(",");
+  return arr;
+}
