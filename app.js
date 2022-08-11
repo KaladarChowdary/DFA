@@ -77,6 +77,7 @@ btn.addEventListener("click", function (evt) {
 // CODE FOR CREATING LINE SEGMENT
 function setElementPostionFromArray(element, postionArray) {
   const [x, y, ...remain] = postionArray;
+  element.style.position = "absolute";
   element.style.left = x + "px";
   element.style.top = y + "px";
 }
@@ -163,10 +164,7 @@ function createLine() {
 
 function createLineAt(arr) {
   const line = createLine();
-  const [x, y, ...remain] = arr;
-  line.style.position = "absolute";
-  line.style.top = y + "px";
-  line.style.left = x + "px";
+  setElementPostionFromArray(line, arr);
   document.body.appendChild(line);
   return line;
 }
