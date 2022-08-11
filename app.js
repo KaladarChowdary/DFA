@@ -3,21 +3,23 @@ const [point] = document.getElementsByClassName("point");
 const [line] = document.getElementsByClassName("line");
 
 point.addEventListener("click", function (event) {
-  const s = textBox.value;
-  console.log(isEmpty(s));
-  if (isInputWrongForPointer(s)) {
+  if (isInputWrongForPointer(textBox.value)) {
     alert("Wrong Input For Pointer");
     return;
   }
-
-  const arr = returnArrayFromNumberedString(s);
+  const arr = getArrayFromTextBox();
   addPointAtCoordinates(arr);
 });
 
 line.addEventListener("click", function (event) {
-  const l = createLine();
-  addElementToWebPage(l);
+  const arr = getArrayFromTextBox();
+  const l = createLineAt(arr);
 });
+
+function getArrayFromTextBox() {
+  const s = textBox.value;
+  return returnArrayFromNumberedString(s);
+}
 
 function createCircle() {
   const circle = document.createElement("div");
@@ -154,5 +156,15 @@ function returnArrayFromNumberedString(str) {
 function createLine() {
   const line = document.createElement("div");
   line.classList.add("l");
+  return line;
+}
+
+function createLineAt(arr) {
+  const line = createLine();
+  const [x, y, ...remain] = arr;
+  line.style.position = "absolute";
+  line.style.top = y + "px";
+  line.style.left = x + "px";
+  document.body.appendChild(line);
   return line;
 }
