@@ -6,7 +6,7 @@ const [line] = document.getElementsByClassName("line");
 
 point.addEventListener("click", function (event) {
   if (isInputWrongForPointer(textBox.value)) {
-    alert("Wrong Input For Pointer");
+    alert("Enter Numbers Separated By Commas");
     return;
   }
   const arr = getArrayFromTextBox();
@@ -14,6 +14,10 @@ point.addEventListener("click", function (event) {
 });
 
 line.addEventListener("click", function (event) {
+  if (isInputWrongForPointer(textBox.value)) {
+    alert("Enter Numbers Separated By Commas");
+    return;
+  }
   const arr = getArrayFromTextBox();
   const l = createLineAt(arr);
 });
@@ -52,10 +56,6 @@ function changeElementPositionOnDrag(element) {
   };
 
   element.ondragend = function (event) {
-    setElementCoordinatesFromEvent(this, event);
-  };
-
-  element.ondrag = function (event) {
     setElementCoordinatesFromEvent(this, event);
   };
 }
