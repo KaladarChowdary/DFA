@@ -1,3 +1,24 @@
+const [textBox] = document.getElementsByClassName("textbox");
+const [point] = document.getElementsByClassName("point");
+const [line] = document.getElementsByClassName("line");
+
+point.addEventListener("click", function (event) {
+  const s = textBox.value;
+  console.log(isEmpty(s));
+  if (isInputWrongForPointer(s)) {
+    alert("Wrong Input For Pointer");
+    return;
+  }
+
+  const arr = returnArrayFromNumberedString(s);
+  addPointAtCoordinates(arr);
+});
+
+line.addEventListener("click", function (event) {
+  const l = createLine();
+  addElementToWebPage(l);
+});
+
 function createCircle() {
   const circle = document.createElement("div");
   circle.classList.add("circle");
@@ -76,26 +97,6 @@ function addPointAtCoordinates(arr) {
   addElementToWebPage(pt);
 }
 
-const [textBox] = document.getElementsByClassName("textbox");
-const [point] = document.getElementsByClassName("point");
-const [line] = document.getElementsByClassName("line");
-
-point.addEventListener("click", function (event) {
-  const s = textBox.value;
-  console.log(isEmpty(s));
-  if (isInputWrongForPointer(s)) {
-    alert("Wrong Input For Pointer");
-    return;
-  }
-
-  const arr = returnArrayFromNumberedString(s);
-  addPointAtCoordinates(arr);
-});
-
-line.addEventListener("click", function (event) {
-  alert("line button is clicked");
-});
-
 //Need to make sure input to the point is correct
 function isInputWrongForPointer(s) {
   if (isEmpty(s) || areNonNumbersPreset(s)) {
@@ -147,4 +148,11 @@ function returnArrayFromNumberedString(str) {
     ret.push(returnNumberFromString(item));
   }
   return ret;
+}
+
+// Create line dynamically
+function createLine() {
+  const line = document.createElement("div");
+  line.classList.add("l");
+  return line;
 }
