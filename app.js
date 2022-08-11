@@ -66,3 +66,5 @@ function makeArrayFrom2NumberedString(str) {
 
 const [textBox] = document.getElementsByClassName("textbox");
 // console.log(textBox);
+const [point] = document.getElementsByClassName("point");
+const [line] = document.getElementsByClassName("line");
