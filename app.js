@@ -70,9 +70,11 @@ const [point] = document.getElementsByClassName("point");
 const [line] = document.getElementsByClassName("line");
 
 point.addEventListener("click", function (event) {
-  alert("point button is clicked");
+  alert("line button is clicked");
 });
 
 line.addEventListener("click", function (event) {
   alert("line button is clicked");
 });
+
+console.log(makeArrayFrom2NumberedString("23, 23").join("---"));
