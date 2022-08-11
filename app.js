@@ -51,7 +51,7 @@ btn.addEventListener("click", function (evt) {
 
 // CODE FOR CREATING LINE SEGMENT
 function setElementPostionFromArray(element, postionArray) {
-  const [x, y] = postionArray;
+  const [x, y, ...remain] = postionArray;
   element.style.left = x + "px";
   element.style.top = y + "px";
 }
@@ -92,6 +92,9 @@ line.addEventListener("click", function (event) {
 });
 
 //Need to make sure input to the point is correct
+function isInputWrong(s) {
+  if (isEmpty(s) || areNonNumbersPreset(s)) return true;
+}
 function isEmpty(x) {
   return x == "" ? true : false;
 }
@@ -100,3 +103,33 @@ function splitStringAtCommaReturnArray(str) {
   const arr = str.split(",");
   return arr;
 }
+
+function isArrayOfLength2(arr) {
+  return arr.length === 2;
+}
+
+function returnNumberFromString(str) {
+  return Number(str.trim());
+}
+
+function areNonNumbersPreset(s) {
+  const arr = splitStringAtCommaReturnArray(s);
+  for (const item of arr) {
+    if (isNotANumber(item)) return true;
+  }
+}
+
+function isNotANumber(item) {
+  return isNaN(item);
+}
+
+function returnArrayFromNumberedStrint(str) {
+  const arr = splitStringAtCommaReturnArray(str);
+  const ret = [];
+  for (const item of arr) {
+    ret.push(returnNumberFromString(item));
+  }
+  return ret;
+}
+
+console.log(returnArrayFromNumberedStrint("23 ,234 , 3"));
