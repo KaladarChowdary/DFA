@@ -52,8 +52,8 @@ btn.addEventListener("click", function (evt) {
 // CODE FOR CREATING LINE SEGMENT
 function setElementPostionFromArray(element, postionArray) {
   const [x, y] = postionArray;
-  element.style.x = x + "px";
-  element.style.y = y + "px";
+  element.style.left = x + "px";
+  element.style.top = y + "px";
 }
 
 function makeArrayFrom2NumberedString(str) {
