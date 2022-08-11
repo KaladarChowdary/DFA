@@ -70,15 +70,20 @@ function createPoint() {
   return point;
 }
 
+function addPointAtCoordinates(arr) {
+  const pt = createPoint();
+  setElementPostionFromArray(pt, arr);
+  addElementToWebPage(pt);
+}
+
 const [textBox] = document.getElementsByClassName("textbox");
-// console.log(textBox);
 const [point] = document.getElementsByClassName("point");
 const [line] = document.getElementsByClassName("line");
 
 point.addEventListener("click", function (event) {
   const s = textBox.value;
   const arr = makeArrayFrom2NumberedString(s);
-  console.log(arr);
+  addPointAtCoordinates(arr);
 });
 
 line.addEventListener("click", function (event) {
