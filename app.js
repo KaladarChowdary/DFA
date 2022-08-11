@@ -82,6 +82,7 @@ const [line] = document.getElementsByClassName("line");
 
 point.addEventListener("click", function (event) {
   const s = textBox.value;
+  console.log(isEmpty(s));
   const arr = makeArrayFrom2NumberedString(s);
   addPointAtCoordinates(arr);
 });
@@ -91,3 +92,6 @@ line.addEventListener("click", function (event) {
 });
 
 //Need to make sure input to the point is correct
+function isEmpty(x) {
+  return x == "" ? true : false;
+}
