@@ -20,8 +20,8 @@
 }
 
 .pt {
-  width: 3px;
-  height: 3px;
+  width: 5px;
+  height: 5px;
   border-radius: 100%;
   background-color: red;
   position: absolute;

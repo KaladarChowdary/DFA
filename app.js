@@ -81,11 +81,15 @@ const [point] = document.getElementsByClassName("point");
 const [line] = document.getElementsByClassName("line");
 
 point.addEventListener("click", function (event) {
-  console.log(isInputWrongForPointer(textBox.value));
-  // const s = textBox.value;
-  // console.log(isEmpty(s));
-  // const arr = makeArrayFrom2NumberedString(s);
-  // addPointAtCoordinates(arr);
+  const s = textBox.value;
+  console.log(isEmpty(s));
+  if (isInputWrongForPointer(s)) {
+    alert("Wrong Input For Pointer");
+    return;
+  }
+
+  const arr = returnArrayFromNumberedString(s);
+  addPointAtCoordinates(arr);
 });
 
 line.addEventListener("click", function (event) {
@@ -94,7 +98,7 @@ line.addEventListener("click", function (event) {
 
 //Need to make sure input to the point is correct
 function isInputWrongForPointer(s) {
-  if (isEmpty(s) || !isLengthTwo(s) || areNonNumbersPreset(s)) {
+  if (isEmpty(s) || areNonNumbersPreset(s)) {
     return true;
   }
   return false;
