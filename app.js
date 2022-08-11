@@ -81,10 +81,11 @@ const [point] = document.getElementsByClassName("point");
 const [line] = document.getElementsByClassName("line");
 
 point.addEventListener("click", function (event) {
-  const s = textBox.value;
-  console.log(isEmpty(s));
-  const arr = makeArrayFrom2NumberedString(s);
-  addPointAtCoordinates(arr);
+  console.log(isInputWrongForPointer(textBox.value));
+  // const s = textBox.value;
+  // console.log(isEmpty(s));
+  // const arr = makeArrayFrom2NumberedString(s);
+  // addPointAtCoordinates(arr);
 });
 
 line.addEventListener("click", function (event) {
@@ -92,11 +93,20 @@ line.addEventListener("click", function (event) {
 });
 
 //Need to make sure input to the point is correct
-function isInputWrong(s) {
-  if (isEmpty(s) || areNonNumbersPreset(s)) return true;
+function isInputWrongForPointer(s) {
+  if (isEmpty(s) || !isLengthTwo(s) || areNonNumbersPreset(s)) {
+    return true;
+  }
+  return false;
 }
 function isEmpty(x) {
   return x == "" ? true : false;
+}
+
+function isLengthTwo(s) {
+  const arr = splitStringAtCommaReturnArray(s);
+  if (arr.length === 2) return true;
+  else return false;
 }
 
 function splitStringAtCommaReturnArray(str) {
@@ -115,15 +125,18 @@ function returnNumberFromString(str) {
 function areNonNumbersPreset(s) {
   const arr = splitStringAtCommaReturnArray(s);
   for (const item of arr) {
-    if (isNotANumber(item)) return true;
+    if (isNotANumber(item)) {
+      return true;
+    }
   }
+  return false;
 }
 
 function isNotANumber(item) {
   return isNaN(item);
 }
 
-function returnArrayFromNumberedStrint(str) {
+function returnArrayFromNumberedString(str) {
   const arr = splitStringAtCommaReturnArray(str);
   const ret = [];
   for (const item of arr) {
@@ -132,4 +145,4 @@ function returnArrayFromNumberedStrint(str) {
   return ret;
 }
 
-console.log(returnArrayFromNumberedStrint("23 ,234 , 3"));
+// console.log(returnArrayFromNumberedStrint("23 ,234 , 3"));
