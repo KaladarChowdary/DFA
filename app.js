@@ -55,3 +55,7 @@ function setElementPostionFromArray(element, postionArray) {
   element.style.x = x + "px";
   element.style.y = y + "px";
 }
+
+function makeArrayFrom2NumberedString(str) {
+  return str.split(",");
+}
