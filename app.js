@@ -48,3 +48,10 @@ const [btn] = document.getElementsByClassName("btn");
 btn.addEventListener("click", function (evt) {
   addDraggableCircle();
 });
+
+// CODE FOR CREATING LINE SEGMENT
+function setElementPostionFromArray(element, postionArray) {
+  const [x, y] = postionArray;
+  element.style.x = x + "px";
+  element.style.y = y + "px";
+}
