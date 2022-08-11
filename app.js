@@ -64,6 +64,12 @@ function makeArrayFrom2NumberedString(str) {
   return arr;
 }
 
+function createPoint() {
+  const point = document.createElement("div");
+  point.classList.add("pt");
+  return point;
+}
+
 const [textBox] = document.getElementsByClassName("textbox");
 // console.log(textBox);
 const [point] = document.getElementsByClassName("point");
