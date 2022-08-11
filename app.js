@@ -1,3 +1,5 @@
+//Refactor Existing Code
+
 const [textBox] = document.getElementsByClassName("textbox");
 const [point] = document.getElementsByClassName("point");
 const [line] = document.getElementsByClassName("line");
