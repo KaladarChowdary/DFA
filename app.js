@@ -148,5 +148,3 @@ function returnArrayFromNumberedString(str) {
   }
   return ret;
 }
-
-// console.log(returnArrayFromNumberedStrint("23 ,234 , 3"));
