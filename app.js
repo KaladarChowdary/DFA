@@ -29,6 +29,10 @@ function returnNumberFromString(str) {
   return Number(str.trim());
 }
 
+function isEmpty(x) {
+  return x == "" ? true : false;
+}
+
 function isNotANumber(item) {
   return isNaN(item);
 }
@@ -50,6 +54,13 @@ function splitStringAtCommaReturnArray(str) {
 }
 
 // ----------------------------------------------------------------------------------------------
+
+function isInputWrongForPointer(s) {
+  if (isEmpty(s) || areNonNumbersPreset(s)) {
+    return true;
+  }
+  return false;
+}
 
 function returnArrayFromNumberedString(str) {
   const arr = splitStringAtCommaReturnArray(str);
@@ -81,6 +92,12 @@ function areNonNumbersPreset(s) {
 }
 
 // ----------------------------------------------------------------------------------------------
+function getArrayFromTextBox() {
+  const s = textBox.value;
+  return returnArrayFromNumberedString(s);
+}
+
+// ----------------------------------------------------------------------------------------------
 
 point.addEventListener("click", function (event) {
   if (isInputWrongForPointer(textBox.value)) {
@@ -100,11 +117,6 @@ line.addEventListener("click", function (event) {
   const l = createLineAt(arr);
 });
 
-function getArrayFromTextBox() {
-  const s = textBox.value;
-  return returnArrayFromNumberedString(s);
-}
-
 function createCircle() {
   const circle = document.createElement("div");
   circle.classList.add("circle");
@@ -123,8 +135,6 @@ btn.addEventListener("click", function (evt) {
   addDraggableCircle();
 });
 
-// CODE FOR CREATING LINE SEGMENT
-
 function createPoint() {
   const point = document.createElement("div");
   point.classList.add("pt");
@@ -138,24 +148,6 @@ function addPointAtCoordinates(arr) {
   addElementToWebPage(pt);
 }
 
-//Need to make sure input to the point is correct
-function isInputWrongForPointer(s) {
-  if (isEmpty(s) || areNonNumbersPreset(s)) {
-    return true;
-  }
-  return false;
-}
-function isEmpty(x) {
-  return x == "" ? true : false;
-}
-
-function isLengthTwo(s) {
-  const arr = splitStringAtCommaReturnArray(s);
-  if (arr.length === 2) return true;
-  else return false;
-}
-
-// Create line dynamically
 function createLine() {
   const line = document.createElement("div");
   line.classList.add("l");
