@@ -93,7 +93,13 @@ function areNonNumbersPreset(s) {
 
 function distanceBetweenTwoPoints(arr) {
   const [x1, y1, x2, y2, ...rest] = arr;
-  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) * 2);
+  console.log(`x1, y1 = ${x1}, ${y1}`);
+  console.log(`x2, y2 = ${x2}, ${y2}`);
+  console.log(`x2-x1, y2-y1 = ${x2 - x1}, ${y2 - y1}`);
+  console.log(
+    `(x2 - x1) ** 2, (y2 - y1) * 2 = ${(x2 - x1) ** 2}, ${(y2 - y1) ** 2}`
+  );
+  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
 
 function setLineWidth(line, width) {
@@ -177,9 +183,6 @@ line.addEventListener("click", function (event) {
   }
   const arr = getArrayFromTextBox();
   const l = addLineBetweenPoints(arr);
-  console.log(
-    `Distence between two points is ${distanceBetweenTwoPoints(arr)}`
-  );
 });
 
 btn.addEventListener("click", function (evt) {
