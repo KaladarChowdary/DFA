@@ -179,3 +179,8 @@ line.addEventListener("click", function (event) {
 btn.addEventListener("click", function (evt) {
   addDraggableCircle();
 });
+
+// ROTATION IS IN CLOCKWISE DIRECTION
+function rotateLine(line, angle) {
+  line.style.transform = `rotate(${angle}deg)`;
+}
