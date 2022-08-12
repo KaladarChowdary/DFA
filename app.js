@@ -17,6 +17,10 @@ function setDraggableTrue(element) {
   element.setAttribute("draggable", "true");
 }
 
+function setDraggableFalse(element) {
+  element.setAttribute("draggable", "false");
+}
+
 function isArrayOfLength2(arr) {
   return arr.length === 2;
 }
@@ -28,6 +32,55 @@ function returnNumberFromString(str) {
 function isNotANumber(item) {
   return isNaN(item);
 }
+
+function setElementCoordinatesFromEvent(element, event) {
+  element.style.left = event.pageX + "px";
+  element.style.top = event.pageY + "px";
+}
+
+function setElementPostionFromArray(element, postionArray) {
+  const [x, y, ...remain] = postionArray;
+  element.style.left = x + "px";
+  element.style.top = y + "px";
+}
+
+function splitStringAtCommaReturnArray(str) {
+  const arr = str.split(",");
+  return arr;
+}
+
+// ----------------------------------------------------------------------------------------------
+
+function returnArrayFromNumberedString(str) {
+  const arr = splitStringAtCommaReturnArray(str);
+  const ret = [];
+  for (const item of arr) {
+    ret.push(returnNumberFromString(item));
+  }
+  return ret;
+}
+
+function changeElementPositionOnDrag(element) {
+  element.ondrag = function (event) {
+    setElementCoordinatesFromEvent(this, event);
+  };
+
+  element.ondragend = function (event) {
+    setElementCoordinatesFromEvent(this, event);
+  };
+}
+
+function areNonNumbersPreset(s) {
+  const arr = splitStringAtCommaReturnArray(s);
+  for (const item of arr) {
+    if (isNotANumber(item)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// ----------------------------------------------------------------------------------------------
 
 point.addEventListener("click", function (event) {
   if (isInputWrongForPointer(textBox.value)) {
@@ -58,21 +111,6 @@ function createCircle() {
   return circle;
 }
 
-function setElementCoordinatesFromEvent(element, event) {
-  element.style.left = event.pageX + "px";
-  element.style.top = event.pageY + "px";
-}
-
-function changeElementPositionOnDrag(element) {
-  element.ondrag = function (event) {
-    setElementCoordinatesFromEvent(this, event);
-  };
-
-  element.ondragend = function (event) {
-    setElementCoordinatesFromEvent(this, event);
-  };
-}
-
 function addDraggableCircle() {
   const circle = createCircle();
   makePositionAbsolute(circle);
@@ -86,20 +124,6 @@ btn.addEventListener("click", function (evt) {
 });
 
 // CODE FOR CREATING LINE SEGMENT
-function setElementPostionFromArray(element, postionArray) {
-  const [x, y, ...remain] = postionArray;
-  element.style.position = "absolute";
-  element.style.left = x + "px";
-  element.style.top = y + "px";
-}
-
-function makeArrayFrom2NumberedString(str) {
-  const arr = [];
-  for (const s of str.split(",")) {
-    arr.push(Number(s.trim()));
-  }
-  return arr;
-}
 
 function createPoint() {
   const point = document.createElement("div");
@@ -109,6 +133,7 @@ function createPoint() {
 
 function addPointAtCoordinates(arr) {
   const pt = createPoint();
+  makePositionAbsolute(pt);
   setElementPostionFromArray(pt, arr);
   addElementToWebPage(pt);
 }
@@ -130,30 +155,6 @@ function isLengthTwo(s) {
   else return false;
 }
 
-function splitStringAtCommaReturnArray(str) {
-  const arr = str.split(",");
-  return arr;
-}
-
-function areNonNumbersPreset(s) {
-  const arr = splitStringAtCommaReturnArray(s);
-  for (const item of arr) {
-    if (isNotANumber(item)) {
-      return true;
-    }
-  }
-  return false;
-}
-
-function returnArrayFromNumberedString(str) {
-  const arr = splitStringAtCommaReturnArray(str);
-  const ret = [];
-  for (const item of arr) {
-    ret.push(returnNumberFromString(item));
-  }
-  return ret;
-}
-
 // Create line dynamically
 function createLine() {
   const line = document.createElement("div");
@@ -163,6 +164,7 @@ function createLine() {
 
 function createLineAt(arr) {
   const line = createLine();
+  makePositionAbsolute(line);
   setElementPostionFromArray(line, arr);
   document.body.appendChild(line);
   return line;
