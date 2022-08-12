@@ -149,7 +149,7 @@ function addLineAtCoordinates(arr) {
   return line;
 }
 
-function addLineBetweenPoints(arr) {
+function horizontalLineBetweenPoints(arr) {
   const line = createLine();
   makePositionAbsolute(line);
   setStartPositionFromArray(line, arr);
@@ -174,18 +174,23 @@ line.addEventListener("click", function (event) {
     return;
   }
   const arr = getArrayFromTextBox();
-  const l = addLineBetweenPoints(arr);
+  const l = horizontalLineBetweenPoints(arr);
   rotateLine(l, 30);
-  addLineBetweenPoints(arr);
+  horizontalLineBetweenPoints(arr);
 });
 
 btn.addEventListener("click", function (evt) {
   addDraggableCircle();
 });
 
-// ROTATION IS IN CLOCKWISE DIRECTION
+// THESE FUNCTIONS NEED TO BE PUT IN THEIR PLACE
+
 function rotateLine(line, angle) {
   console.log(line);
   line.style.transform = `rotate(${angle}deg)`;
-  // console.log("function to rotate is executed");
+}
+
+function returnMidPointBetweenTwoPoints(arr) {
+  const [x1, y1, x2, y2, ...rest] = arr;
+  return [(x1 + x2) / 2, (y1 + y2) / 2];
 }
