@@ -99,24 +99,6 @@ function getArrayFromTextBox() {
 
 // ----------------------------------------------------------------------------------------------
 
-point.addEventListener("click", function (event) {
-  if (isInputWrongForPointer(textBox.value)) {
-    alert("Enter Numbers Separated By Commas");
-    return;
-  }
-  const arr = getArrayFromTextBox();
-  addPointAtCoordinates(arr);
-});
-
-line.addEventListener("click", function (event) {
-  if (isInputWrongForPointer(textBox.value)) {
-    alert("Enter Numbers Separated By Commas");
-    return;
-  }
-  const arr = getArrayFromTextBox();
-  const l = createLineAt(arr);
-});
-
 function createCircle() {
   const circle = document.createElement("div");
   circle.classList.add("circle");
@@ -130,10 +112,6 @@ function addDraggableCircle() {
   changeElementPositionOnDrag(circle);
   addElementToWebPage(circle);
 }
-
-btn.addEventListener("click", function (evt) {
-  addDraggableCircle();
-});
 
 function createPoint() {
   const point = document.createElement("div");
@@ -154,10 +132,34 @@ function createLine() {
   return line;
 }
 
-function createLineAt(arr) {
+function addLineAtCoordinates(arr) {
   const line = createLine();
   makePositionAbsolute(line);
   setElementPostionFromArray(line, arr);
-  document.body.appendChild(line);
+  addElementToWebPage(line);
   return line;
 }
+
+// ----------------------------------------------------------------------------------------------
+
+point.addEventListener("click", function (event) {
+  if (isInputWrongForPointer(textBox.value)) {
+    alert("Enter Numbers Separated By Commas");
+    return;
+  }
+  const arr = getArrayFromTextBox();
+  addPointAtCoordinates(arr);
+});
+
+line.addEventListener("click", function (event) {
+  if (isInputWrongForPointer(textBox.value)) {
+    alert("Enter Numbers Separated By Commas");
+    return;
+  }
+  const arr = getArrayFromTextBox();
+  const l = ddLineAtCoordinates(arr);
+});
+
+btn.addEventListener("click", function (evt) {
+  addDraggableCircle();
+});
