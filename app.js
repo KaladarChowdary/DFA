@@ -1,8 +1,33 @@
-//Refactor Existing Code
+//Actual html elements first
 
 const [textBox] = document.getElementsByClassName("textbox");
 const [point] = document.getElementsByClassName("point");
 const [line] = document.getElementsByClassName("line");
+const [btn] = document.getElementsByClassName("btn");
+
+function addElementToWebPage(element) {
+  document.body.appendChild(element);
+}
+
+function makePositionAbsolute(element) {
+  element.style.position = "absolute";
+}
+
+function setDraggableTrue(element) {
+  element.setAttribute("draggable", "true");
+}
+
+function isArrayOfLength2(arr) {
+  return arr.length === 2;
+}
+
+function returnNumberFromString(str) {
+  return Number(str.trim());
+}
+
+function isNotANumber(item) {
+  return isNaN(item);
+}
 
 point.addEventListener("click", function (event) {
   if (isInputWrongForPointer(textBox.value)) {
@@ -33,18 +58,6 @@ function createCircle() {
   return circle;
 }
 
-function addElementToWebPage(element) {
-  document.body.appendChild(element);
-}
-
-function makePositionAbsolute(element) {
-  element.style.position = "absolute";
-}
-
-function setDraggableTrue(element) {
-  element.setAttribute("draggable", "true");
-}
-
 function setElementCoordinatesFromEvent(element, event) {
   element.style.left = event.pageX + "px";
   element.style.top = event.pageY + "px";
@@ -67,8 +80,6 @@ function addDraggableCircle() {
   changeElementPositionOnDrag(circle);
   addElementToWebPage(circle);
 }
-
-const [btn] = document.getElementsByClassName("btn");
 
 btn.addEventListener("click", function (evt) {
   addDraggableCircle();
@@ -124,14 +135,6 @@ function splitStringAtCommaReturnArray(str) {
   return arr;
 }
 
-function isArrayOfLength2(arr) {
-  return arr.length === 2;
-}
-
-function returnNumberFromString(str) {
-  return Number(str.trim());
-}
-
 function areNonNumbersPreset(s) {
   const arr = splitStringAtCommaReturnArray(s);
   for (const item of arr) {
@@ -140,10 +143,6 @@ function areNonNumbersPreset(s) {
     }
   }
   return false;
-}
-
-function isNotANumber(item) {
-  return isNaN(item);
 }
 
 function returnArrayFromNumberedString(str) {
