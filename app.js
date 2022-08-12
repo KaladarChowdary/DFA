@@ -176,7 +176,7 @@ line.addEventListener("click", function (event) {
     return;
   }
   const arr = getArrayFromTextBox();
-  const l = ddLineAtCoordinates(arr);
+  const l = addLineBetweenPoints(arr);
 });
 
 btn.addEventListener("click", function (evt) {
