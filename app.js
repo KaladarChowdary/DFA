@@ -91,6 +91,14 @@ function areNonNumbersPreset(s) {
   return false;
 }
 
+function distanceBetweenTwoPoints(arr) {
+  const [x1, y1, x2, y2, ...rest] = arr;
+  console.log((x2 - x1) ** 2 + (y2 - y1) * 2);
+  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) * 2);
+}
+
+console.log(distanceBetweenTwoPoints([1, 1, 2, 2]));
+
 // ----------------------------------------------------------------------------------------------
 function getArrayFromTextBox() {
   const s = textBox.value;
