@@ -93,12 +93,12 @@ function areNonNumbersPreset(s) {
 
 function distanceBetweenTwoPoints(arr) {
   const [x1, y1, x2, y2, ...rest] = arr;
-  console.log(`x1, y1 = ${x1}, ${y1}`);
-  console.log(`x2, y2 = ${x2}, ${y2}`);
-  console.log(`x2-x1, y2-y1 = ${x2 - x1}, ${y2 - y1}`);
-  console.log(
-    `(x2 - x1) ** 2, (y2 - y1) * 2 = ${(x2 - x1) ** 2}, ${(y2 - y1) ** 2}`
-  );
+  // console.log(`x1, y1 = ${x1}, ${y1}`);
+  // console.log(`x2, y2 = ${x2}, ${y2}`);
+  // console.log(`x2-x1, y2-y1 = ${x2 - x1}, ${y2 - y1}`);
+  // console.log(
+  //   `(x2 - x1) ** 2, (y2 - y1) * 2 = ${(x2 - x1) ** 2}, ${(y2 - y1) ** 2}`
+  // );
   return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
 
@@ -156,13 +156,13 @@ function addLineAtCoordinates(arr) {
 }
 
 function addLineBetweenPoints(arr) {
-  // const line = createLine();
-  // makePositionAbsolute(line);
-  // setElementPostionFromArray(line, arr);
-  // setLineWidth(line, distanceBetweenTwoPoints(arr));
-  // addElementToWebPage(line);
-  // return line;
-  distanceBetweenTwoPoints(arr);
+  const line = createLine();
+  makePositionAbsolute(line);
+  setElementPostionFromArray(line, arr);
+  setLineWidth(line, distanceBetweenTwoPoints(arr));
+  addElementToWebPage(line);
+  return line;
+  // distanceBetweenTwoPoints(arr);
 }
 
 // ----------------------------------------------------------------------------------------------
