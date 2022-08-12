@@ -42,7 +42,7 @@ function setElementCoordinatesFromEvent(element, event) {
   element.style.top = event.pageY + "px";
 }
 
-function setElementPostionFromArray(element, postionArray) {
+function setStartPositionFromArray(element, postionArray) {
   const [x, y, ...remain] = postionArray;
   element.style.left = x + "px";
   element.style.top = y + "px";
@@ -93,12 +93,6 @@ function areNonNumbersPreset(s) {
 
 function distanceBetweenTwoPoints(arr) {
   const [x1, y1, x2, y2, ...rest] = arr;
-  // console.log(`x1, y1 = ${x1}, ${y1}`);
-  // console.log(`x2, y2 = ${x2}, ${y2}`);
-  // console.log(`x2-x1, y2-y1 = ${x2 - x1}, ${y2 - y1}`);
-  // console.log(
-  //   `(x2 - x1) ** 2, (y2 - y1) * 2 = ${(x2 - x1) ** 2}, ${(y2 - y1) ** 2}`
-  // );
   return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
 
@@ -137,7 +131,7 @@ function createPoint() {
 function addPointAtCoordinates(arr) {
   const pt = createPoint();
   makePositionAbsolute(pt);
-  setElementPostionFromArray(pt, arr);
+  setStartPositionFromArray(pt, arr);
   addElementToWebPage(pt);
 }
 
@@ -150,7 +144,7 @@ function createLine() {
 function addLineAtCoordinates(arr) {
   const line = createLine();
   makePositionAbsolute(line);
-  setElementPostionFromArray(line, arr);
+  setStartPositionFromArray(line, arr);
   addElementToWebPage(line);
   return line;
 }
@@ -158,13 +152,10 @@ function addLineAtCoordinates(arr) {
 function addLineBetweenPoints(arr) {
   const line = createLine();
   makePositionAbsolute(line);
-  setElementPostionFromArray(line, arr);
+  setStartPositionFromArray(line, arr);
   setLineWidth(line, distanceBetweenTwoPoints(arr));
   addElementToWebPage(line);
-  return line;
-  // distanceBetweenTwoPoints(arr);
 }
-
 // ----------------------------------------------------------------------------------------------
 
 point.addEventListener("click", function (event) {
