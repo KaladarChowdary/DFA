@@ -93,7 +93,6 @@ function areNonNumbersPreset(s) {
 
 function distanceBetweenTwoPoints(arr) {
   const [x1, y1, x2, y2, ...rest] = arr;
-  console.log((x2 - x1) ** 2 + (y2 - y1) * 2);
   return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) * 2);
 }
 
@@ -151,12 +150,13 @@ function addLineAtCoordinates(arr) {
 }
 
 function addLineBetweenPoints(arr) {
-  const line = createLine();
-  makePositionAbsolute(line);
-  setElementPostionFromArray(line, arr);
-  setLineWidth(line, distanceBetweenTwoPoints(arr));
-  addElementToWebPage(line);
-  return line;
+  // const line = createLine();
+  // makePositionAbsolute(line);
+  // setElementPostionFromArray(line, arr);
+  // setLineWidth(line, distanceBetweenTwoPoints(arr));
+  // addElementToWebPage(line);
+  // return line;
+  distanceBetweenTwoPoints(arr);
 }
 
 // ----------------------------------------------------------------------------------------------
@@ -177,6 +177,9 @@ line.addEventListener("click", function (event) {
   }
   const arr = getArrayFromTextBox();
   const l = addLineBetweenPoints(arr);
+  console.log(
+    `Distence between two points is ${distanceBetweenTwoPoints(arr)}`
+  );
 });
 
 btn.addEventListener("click", function (evt) {
