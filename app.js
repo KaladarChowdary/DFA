@@ -155,6 +155,7 @@ function addLineBetweenPoints(arr) {
   setStartPositionFromArray(line, arr);
   setLineWidth(line, distanceBetweenTwoPoints(arr));
   addElementToWebPage(line);
+  return line;
 }
 // ----------------------------------------------------------------------------------------------
 
@@ -174,6 +175,8 @@ line.addEventListener("click", function (event) {
   }
   const arr = getArrayFromTextBox();
   const l = addLineBetweenPoints(arr);
+  rotateLine(l, 30);
+  addLineBetweenPoints(arr);
 });
 
 btn.addEventListener("click", function (evt) {
@@ -182,5 +185,7 @@ btn.addEventListener("click", function (evt) {
 
 // ROTATION IS IN CLOCKWISE DIRECTION
 function rotateLine(line, angle) {
+  console.log(line);
   line.style.transform = `rotate(${angle}deg)`;
+  // console.log("function to rotate is executed");
 }
