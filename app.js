@@ -177,6 +177,10 @@ line.addEventListener("click", function (event) {
   const l = horizontalLineBetweenPoints(arr);
   rotateLine(l, 30);
   horizontalLineBetweenPoints(arr);
+
+  addPointAtCoordinates(arr);
+  addPointAtCoordinates(returnMidPointBetweenTwoPoints(arr));
+  addPointAtCoordinates([arr[2], arr[3]]);
 });
 
 btn.addEventListener("click", function (evt) {
