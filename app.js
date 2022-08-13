@@ -53,6 +53,10 @@ function splitStringAtCommaReturnArray(str) {
   return arr;
 }
 
+function makeElementInline(element) {
+  element.style.display = "inline";
+}
+
 // ----------------------------------------------------------------------------------------------
 
 function isInputWrongForPointer(s) {
@@ -106,7 +110,7 @@ function createCircle() {
 }
 
 function addDraggableCircle() {
-  const circle = createCircle();
+  const circle = createCirclewithName("state1");
   makePositionAbsolute(circle);
   setDraggableTrue(circle);
   changeElementPositionOnDrag(circle);
@@ -140,6 +144,20 @@ function addLineAtCoordinates(arr) {
   return line;
 }
 
+function createTextElement(name) {
+  const text = document.createElement("p");
+  text.textContent = name;
+  return text;
+}
+
+function createCirclewithName(name) {
+  const circle = createCircle();
+  const text = createTextElement(name);
+  makeElementInline(text);
+  circle.appendChild(text);
+  return circle;
+}
+
 // ----------------------------------------------------------------------------------------------
 
 point.addEventListener("click", function (event) {
@@ -163,3 +181,5 @@ line.addEventListener("click", function (event) {
 btn.addEventListener("click", function (evt) {
   addDraggableCircle();
 });
+
+// ------------------------------------------------
