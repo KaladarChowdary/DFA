@@ -1,14 +1,4 @@
-function createCircle() {
-  const circle = document.createElement("div");
-  circle.classList.add("circle");
-  return circle;
-}
-
-function createTextElement(name) {
-  const text = document.createElement("p");
-  text.textContent = name;
-  return text;
-}
+const [btn] = document.getElementsByClassName("btn");
 
 function addElementToWebPage(element) {
   document.body.appendChild(element);
@@ -31,6 +21,8 @@ function setElementCoordinatesFromEvent(element, event) {
   element.style.top = event.pageY + "px";
 }
 
+// ------------------------------------------------------------------------------------------------
+
 function changeElementPositionOnDrag(element) {
   element.ondrag = function (event) {
     setElementCoordinatesFromEvent(this, event);
@@ -43,6 +35,18 @@ function changeElementPositionOnDrag(element) {
   element.ondrag = function (event) {
     setElementCoordinatesFromEvent(this, event);
   };
+}
+
+function createCircle() {
+  const circle = document.createElement("div");
+  circle.classList.add("circle");
+  return circle;
+}
+
+function createTextElement(name) {
+  const text = document.createElement("p");
+  text.textContent = name;
+  return text;
 }
 
 function createCirclewithName(name) {
@@ -61,10 +65,6 @@ function addDraggableCircle() {
   addElementToWebPage(circle);
 }
 
-const [btn] = document.getElementsByClassName("btn");
-
 btn.addEventListener("click", function (evt) {
   addDraggableCircle();
 });
-
-// addElementToWebPage(createCirclewithName("s1"));
