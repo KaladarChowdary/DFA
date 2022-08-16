@@ -128,6 +128,7 @@ function displayMidpointOnClick(element) {
     addPointAtCoordinates(returnCircleMidPoint(element));
   });
 }
+
 // ----------------------------------------------------------------------------------------------
 
 function isInputWrongForPointer(s) {
@@ -173,11 +174,12 @@ function createCircle() {
 }
 
 function addDraggableCircle() {
-  const circle = createCirclewithName("state1");
+  const circle = createCircle();
   makePositionAbsolute(circle);
   setDraggableTrue(circle);
   changeElementPositionOnDrag(circle);
   displayMidpointOnClick(circle);
+  pushMidpointOnClick(circle);
   addElementToWebPage(circle);
 }
 
@@ -228,12 +230,12 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
   );
   setLineWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
   rotateElementByRad(l, angleBetweenTwoPoints([x1, y1, x2, y2]));
-  setBackgroundColor(l, "grey");
+  setBackgroundColor(l, "black");
   addElementToWebPage(l);
 
-  addPointAtCoordinates([x1, y1]);
-  addPointAtCoordinates([x2, y2]);
-  addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
+  // addPointAtCoordinates([x1, y1]);
+  // addPointAtCoordinates([x2, y2]);
+  // addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
 }
 
 // ----------------------------------------------------------------------------------------------
@@ -262,32 +264,15 @@ btn.addEventListener("click", function (evt) {
 
 // ------------------------------------------------
 
-setDefaultValueinTextBox();
-
-// -------------------------------------------------------
-// ALL CHANGES BELOW THIS LINE
-
-let arr = [];
-function pushMidpoint(arr1) {
-  arr.push(arr1);
-  if (arr.length === 2) {
-    addLineBetweenTwoPoints([...arr[0], ...arr[1]]);
-    arr = [];
-  }
-}
-
 function pushMidpointOnClick(element) {
   element.addEventListener("click", function () {
     pushMidpoint(returnCircleMidPoint(element));
   });
 }
 
-function addDraggableCircle() {
-  const circle = createCirclewithName("state1");
-  makePositionAbsolute(circle);
-  setDraggableTrue(circle);
-  changeElementPositionOnDrag(circle);
-  displayMidpointOnClick(circle);
-  pushMidpointOnClick(circle);
-  addElementToWebPage(circle);
-}
+// ------------------------------------------------
+
+setDefaultValueinTextBox();
+
+// -------------------------------------------------------
+// ALL CHANGES BELOW THIS LINE
