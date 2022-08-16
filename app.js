@@ -210,8 +210,11 @@ function addLineBetweenTwoPoints() {
     return;
   }
   const [x1, y1, x2, y2] = getArrayFromTextBox();
-  const l = addLineAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
-  setLineWidth(l, Math.abs(x1 - x2));
+  const l = addLineAtCoordinates([
+    x1 - returnSetback([x1, y1, x2, y2]),
+    Math.abs((y1 + y2) / 2),
+  ]);
+  setLineWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
   rotateElementByRad(l, angleBetweenTwoPoints([x1, y1, x2, y2]));
   addElementToWebPage(l);
 
@@ -225,4 +228,11 @@ function angleBetweenTwoPoints(arr) {
   const [x1, y1, x2, y2] = arr;
 
   return Math.atan((y2 - y1) / (x2 - x1));
+}
+
+function returnSetback(arr) {
+  const [x1, y1, x2, y2] = arr;
+  const distance = distanceBetweenTwoPoints([x1, y1, x2, y2]);
+  const hlength = Math.abs(x1 - x2);
+  return (distance - hlength) / 2;
 }
