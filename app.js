@@ -21,8 +21,8 @@ function setDraggableFalse(element) {
   element.setAttribute("draggable", "false");
 }
 
-function isArrayOfLengthN(arr, N) {
-  return arr.length === N;
+function isArrayOfLengthLessThanN(arr, N) {
+  return arr.length < N;
 }
 
 function cutSpacesReturnNumber(str) {
@@ -42,8 +42,7 @@ function setElementCoordinatesFromEvent(element, event) {
   element.style.top = event.pageY + "px";
 }
 
-function setElementPostionFromArray(element, postionArray) {
-  const [x, y, ...remain] = postionArray;
+function setElementPostionFromArray(element, [x, y]) {
   element.style.left = x + "px";
   element.style.top = y + "px";
 }
@@ -61,13 +60,11 @@ function rotateElementByRad(line, angle) {
   line.style.transform = `rotate(${angle}rad)`;
 }
 
-function returnMidPointBetweenTwoPoints(arr) {
-  const [x1, y1, x2, y2, ...rest] = arr;
+function returnMidPointBetweenTwoPoints([x1, y1, x2, y2]) {
   return [(x1 + x2) / 2, (y1 + y2) / 2];
 }
 
-function distanceBetweenTwoPoints(arr) {
-  const [x1, y1, x2, y2, ...rest] = arr;
+function distanceBetweenTwoPoints([x1, y1, x2, y2]) {
   return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
 
@@ -75,22 +72,21 @@ function setLineWidth(line, width) {
   line.style.width = width + "px";
 }
 
-function angleBetweenTwoPoints(arr) {
-  const [x1, y1, x2, y2] = arr;
+function angleBetweenTwoPoints([x1, y1, x2, y2]) {
   return Math.atan((y2 - y1) / (x2 - x1));
+}
+
+function setBackgroundColor(element, color) {
+  element.style.backgroundColor = color;
+}
+
+function setDefaultValueinTextBox() {
+  textBox.defaultValue = "500, 100, 900, 200";
 }
 
 // ----------------------------------------------------------------------------------------------
 
-function isInputWrongForPointer(s) {
-  if (isEmpty(s) || areNonNumbersPresent(s)) {
-    return true;
-  }
-  return false;
-}
-
-function returnArrayFromNumberedString(str) {
-  const arr = splitStringAtCommaReturnArray(str);
+function returnArrayFromNumberedString(arr) {
   const ret = [];
   for (const item of arr) {
     ret.push(cutSpacesReturnNumber(item));
@@ -108,8 +104,7 @@ function changeElementPositionOnDrag(element) {
   };
 }
 
-function areNonNumbersPresent(s) {
-  const arr = splitStringAtCommaReturnArray(s);
+function areNonNumbersPresent(arr) {
   for (const item of arr) {
     if (isNotANumber(item)) {
       return true;
@@ -126,9 +121,35 @@ function returnXOffset(arr) {
 }
 
 // ----------------------------------------------------------------------------------------------
+
+function isInputWrongForPointer(s) {
+  const arr = splitStringAtCommaReturnArray(s);
+  if (
+    isEmpty(s) ||
+    areNonNumbersPresent(arr) ||
+    isArrayOfLengthLessThanN(arr, 2)
+  ) {
+    return true;
+  }
+  return false;
+}
+
+function isInputWrongForLine(s) {
+  const arr = splitStringAtCommaReturnArray(s);
+  if (
+    isEmpty(s) ||
+    areNonNumbersPresent(arr) ||
+    isArrayOfLengthLessThanN(arr, 4)
+  ) {
+    return true;
+  }
+  return false;
+}
+
 function getArrayFromTextBox() {
   const s = textBox.value;
-  return returnArrayFromNumberedString(s);
+  const arr = splitStringAtCommaReturnArray(s);
+  return returnArrayFromNumberedString(arr);
 }
 
 function initialPointForLineBetweenTwoPoints(arr) {
@@ -203,11 +224,12 @@ function addLineBetweenTwoPoints(arr) {
   const l = addLineAtCoordinates(initialPointForLineBetweenTwoPoints(arr));
   setLineWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
   rotateElementByRad(l, angleBetweenTwoPoints([x1, y1, x2, y2]));
+  setBackgroundColor(l, "brown");
   addElementToWebPage(l);
 
-  // addPointAtCoordinates([x1, y1]);
-  // addPointAtCoordinates([x2, y2]);
-  // addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
+  addPointAtCoordinates([x1, y1]);
+  addPointAtCoordinates([x2, y2]);
+  addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
 }
 
 // ----------------------------------------------------------------------------------------------
@@ -235,3 +257,5 @@ btn.addEventListener("click", function (evt) {
 });
 
 // ------------------------------------------------
+
+setDefaultValueinTextBox();
