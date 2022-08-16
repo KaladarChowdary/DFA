@@ -172,14 +172,14 @@ function createCircle() {
   return circle;
 }
 
-function addDraggableCircle() {
-  const circle = createCirclewithName("state1");
-  makePositionAbsolute(circle);
-  setDraggableTrue(circle);
-  changeElementPositionOnDrag(circle);
-  displayMidpointOnClick(circle);
-  addElementToWebPage(circle);
-}
+// function addDraggableCircle() {
+//   const circle = createCirclewithName("state1");
+//   makePositionAbsolute(circle);
+//   setDraggableTrue(circle);
+//   changeElementPositionOnDrag(circle);
+//   displayMidpointOnClick(circle);
+//   addElementToWebPage(circle);
+// }
 
 function createPoint() {
   const point = document.createElement("div");
@@ -265,3 +265,29 @@ btn.addEventListener("click", function (evt) {
 setDefaultValueinTextBox();
 
 // -------------------------------------------------------
+// ALL CHANGES BELOW THIS LINE
+
+let arr = [];
+function pushMidpoint(arr1) {
+  arr.push(arr1);
+  if (arr.length === 2) {
+    addLineBetweenTwoPoints([...arr[0], ...arr[1]]);
+    arr = [];
+  }
+}
+
+function pushMidpointOnClick(element) {
+  element.addEventListener("click", function () {
+    pushMidpoint(returnCircleMidPoint(element));
+  });
+}
+
+function addDraggableCircle() {
+  const circle = createCirclewithName("state1");
+  makePositionAbsolute(circle);
+  setDraggableTrue(circle);
+  changeElementPositionOnDrag(circle);
+  displayMidpointOnClick(circle);
+  pushMidpointOnClick(circle);
+  addElementToWebPage(circle);
+}
