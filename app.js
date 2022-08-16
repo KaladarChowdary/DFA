@@ -203,6 +203,7 @@ btn.addEventListener("click", function (evt) {
 // ------------------------------------------------
 
 // Add line when points are not parallel
+//BEGIN REFACTORING
 
 function addLineBetweenTwoPoints() {
   if (isInputWrongForPointer(textBox.value)) {
