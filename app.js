@@ -84,6 +84,10 @@ function setDefaultValueinTextBox() {
   textBox.defaultValue = "500, 100, 900, 200";
 }
 
+function returnCircleMidPoint(element) {
+  return [element.offsetLeft + 50, element.offsetTop + 50];
+}
+
 // ----------------------------------------------------------------------------------------------
 
 function returnArrayFromNumberedString(arr) {
@@ -119,6 +123,11 @@ function returnXOffset([x1, y1, x2, y2]) {
   return (distance - hlength) / 2;
 }
 
+function displayMidpointOnClick(element) {
+  element.addEventListener("click", function () {
+    addPointAtCoordinates(returnCircleMidPoint(element));
+  });
+}
 // ----------------------------------------------------------------------------------------------
 
 function isInputWrongForPointer(s) {
@@ -168,6 +177,7 @@ function addDraggableCircle() {
   makePositionAbsolute(circle);
   setDraggableTrue(circle);
   changeElementPositionOnDrag(circle);
+  displayMidpointOnClick(circle);
   addElementToWebPage(circle);
 }
 
@@ -255,23 +265,3 @@ btn.addEventListener("click", function (evt) {
 setDefaultValueinTextBox();
 
 // -------------------------------------------------------
-function returnCircleMidPoint(element) {
-  return [element.offsetLeft + 50, element.offsetTop + 50];
-}
-
-const circle = returnDraggableCircle();
-
-addElementToWebPage(circle);
-
-circle.addEventListener("click", function () {
-  addPointAtCoordinates(returnCircleMidPoint(circle));
-});
-
-function returnDraggableCircle() {
-  const circle = createCirclewithName("state1");
-  makePositionAbsolute(circle);
-  setDraggableTrue(circle);
-  changeElementPositionOnDrag(circle);
-  addElementToWebPage(circle);
-  return circle;
-}
