@@ -201,3 +201,23 @@ btn.addEventListener("click", function (evt) {
 });
 
 // ------------------------------------------------
+
+// Add line when points are not parallel
+
+function addLineBetweenTwoPoints(arr) {
+  if (isInputWrongForPointer(textBox.value)) {
+    alert("Enter Numbers Separated By Commas");
+    return;
+  }
+  const arr = getArrayFromTextBox();
+  const l = addLineAtCoordinates(returnMidPointBetweenTwoPoints(arr));
+  setLineWidth(l, distanceBetweenTwoPoints(arr));
+  rotateLine(l, angleBetweenTwoPoints(arr));
+  addElementToWebPage(l);
+}
+
+function angleBetweenTwoPoints(arr) {
+  const [x1, y1, x2, y2] = arr;
+
+  return Math.atan((y2 - y1) / (x2 - x1));
+}
