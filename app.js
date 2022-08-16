@@ -193,7 +193,7 @@ line.addEventListener("click", function (event) {
     return;
   }
   const arr = getArrayFromTextBox();
-  const l = addLineAtCoordinates(arr);
+  addLineBetweenTwoPoints(arr);
 });
 
 btn.addEventListener("click", function (evt) {
