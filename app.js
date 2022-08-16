@@ -75,6 +75,11 @@ function setLineWidth(line, width) {
   line.style.width = width + "px";
 }
 
+function angleBetweenTwoPoints(arr) {
+  const [x1, y1, x2, y2] = arr;
+  return Math.atan((y2 - y1) / (x2 - x1));
+}
+
 // ----------------------------------------------------------------------------------------------
 
 function isInputWrongForPointer(s) {
@@ -113,10 +118,22 @@ function areNonNumbersPresent(s) {
   return false;
 }
 
+function returnXOffset(arr) {
+  const [x1, y1, x2, y2] = arr;
+  const distance = distanceBetweenTwoPoints([x1, y1, x2, y2]);
+  const hlength = Math.abs(x1 - x2);
+  return (distance - hlength) / 2;
+}
+
 // ----------------------------------------------------------------------------------------------
 function getArrayFromTextBox() {
   const s = textBox.value;
   return returnArrayFromNumberedString(s);
+}
+
+function initialPointForLineBetweenTwoPoints(arr) {
+  const [x1, y1, x2, y2] = arr;
+  return [x1 - returnXOffset(arr), Math.abs((y1 + y2) / 2)];
 }
 
 // ----------------------------------------------------------------------------------------------
@@ -176,6 +193,23 @@ function createCirclewithName(name) {
   return circle;
 }
 
+function addLineBetweenTwoPoints(arr) {
+  if (isInputWrongForPointer(textBox.value)) {
+    alert("Enter Numbers Separated By Commas");
+    return;
+  }
+  const [x1, y1, x2, y2] = arr;
+
+  const l = addLineAtCoordinates(initialPointForLineBetweenTwoPoints(arr));
+  setLineWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
+  rotateElementByRad(l, angleBetweenTwoPoints([x1, y1, x2, y2]));
+  addElementToWebPage(l);
+
+  // addPointAtCoordinates([x1, y1]);
+  // addPointAtCoordinates([x2, y2]);
+  // addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
+}
+
 // ----------------------------------------------------------------------------------------------
 
 point.addEventListener("click", function (event) {
@@ -201,38 +235,3 @@ btn.addEventListener("click", function (evt) {
 });
 
 // ------------------------------------------------
-
-// Add line when points are not parallel
-//BEGIN REFACTORING
-
-function addLineBetweenTwoPoints(arr) {
-  if (isInputWrongForPointer(textBox.value)) {
-    alert("Enter Numbers Separated By Commas");
-    return;
-  }
-  const [x1, y1, x2, y2] = arr;
-  const l = addLineAtCoordinates([
-    x1 - returnSetback([x1, y1, x2, y2]),
-    Math.abs((y1 + y2) / 2),
-  ]);
-  setLineWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
-  rotateElementByRad(l, angleBetweenTwoPoints([x1, y1, x2, y2]));
-  addElementToWebPage(l);
-
-  addPointAtCoordinates([x1, y1]);
-  addPointAtCoordinates([x2, y2]);
-  addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
-}
-
-function angleBetweenTwoPoints(arr) {
-  const [x1, y1, x2, y2] = arr;
-
-  return Math.atan((y2 - y1) / (x2 - x1));
-}
-
-function returnSetback(arr) {
-  const [x1, y1, x2, y2] = arr;
-  const distance = distanceBetweenTwoPoints([x1, y1, x2, y2]);
-  const hlength = Math.abs(x1 - x2);
-  return (distance - hlength) / 2;
-}
