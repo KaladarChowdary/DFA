@@ -193,7 +193,7 @@ line.addEventListener("click", function (event) {
     return;
   }
   const arr = getArrayFromTextBox();
-  addLineBetweenTwoPoints();
+  addLineBetweenTwoPoints(arr);
 });
 
 btn.addEventListener("click", function (evt) {
@@ -205,12 +205,12 @@ btn.addEventListener("click", function (evt) {
 // Add line when points are not parallel
 //BEGIN REFACTORING
 
-function addLineBetweenTwoPoints() {
+function addLineBetweenTwoPoints(arr) {
   if (isInputWrongForPointer(textBox.value)) {
     alert("Enter Numbers Separated By Commas");
     return;
   }
-  const [x1, y1, x2, y2] = getArrayFromTextBox();
+  const [x1, y1, x2, y2] = arr;
   const l = addLineAtCoordinates([
     x1 - returnSetback([x1, y1, x2, y2]),
     Math.abs((y1 + y2) / 2),
@@ -222,7 +222,6 @@ function addLineBetweenTwoPoints() {
   addPointAtCoordinates([x1, y1]);
   addPointAtCoordinates([x2, y2]);
   addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
-  addPointAtCoordinates(returnMidPointBetweenTwoPoints([x1, y1, x2, y2]));
 }
 
 function angleBetweenTwoPoints(arr) {
