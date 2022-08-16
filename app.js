@@ -57,6 +57,16 @@ function makeElementInline(element) {
   element.style.display = "inline";
 }
 
+function rotateLine(line, angle) {
+  console.log(line);
+  line.style.transform = `rotate(${angle}deg)`;
+}
+
+function returnMidPointBetweenTwoPoints(arr) {
+  const [x1, y1, x2, y2, ...rest] = arr;
+  return [(x1 + x2) / 2, (y1 + y2) / 2];
+}
+
 // ----------------------------------------------------------------------------------------------
 
 function isInputWrongForPointer(s) {
