@@ -192,3 +192,11 @@ btn.addEventListener("click", function (evt) {
 });
 
 // ------------------------------------------------
+function distanceBetweenTwoPoints(arr) {
+  const [x1, y1, x2, y2, ...rest] = arr;
+  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+}
+
+function setLineWidth(line, width) {
+  line.style.width = width + "px";
+}
