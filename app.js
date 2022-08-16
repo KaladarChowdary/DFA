@@ -172,14 +172,14 @@ function createCircle() {
   return circle;
 }
 
-// function addDraggableCircle() {
-//   const circle = createCirclewithName("state1");
-//   makePositionAbsolute(circle);
-//   setDraggableTrue(circle);
-//   changeElementPositionOnDrag(circle);
-//   displayMidpointOnClick(circle);
-//   addElementToWebPage(circle);
-// }
+function addDraggableCircle() {
+  const circle = createCirclewithName("state1");
+  makePositionAbsolute(circle);
+  setDraggableTrue(circle);
+  changeElementPositionOnDrag(circle);
+  displayMidpointOnClick(circle);
+  addElementToWebPage(circle);
+}
 
 function createPoint() {
   const point = document.createElement("div");
