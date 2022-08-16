@@ -25,12 +25,12 @@ function isArrayOfLength2(arr) {
   return arr.length === 2;
 }
 
-function returnNumberFromString(str) {
+function cutSpacesReturnNumber(str) {
   return Number(str.trim());
 }
 
 function isEmpty(x) {
-  return x == "" ? true : false;
+  return x === "";
 }
 
 function isNotANumber(item) {
@@ -58,7 +58,6 @@ function makeElementInline(element) {
 }
 
 function rotateLine(line, angle) {
-  console.log(line);
   line.style.transform = `rotate(${angle}deg)`;
 }
 
@@ -70,7 +69,7 @@ function returnMidPointBetweenTwoPoints(arr) {
 // ----------------------------------------------------------------------------------------------
 
 function isInputWrongForPointer(s) {
-  if (isEmpty(s) || areNonNumbersPreset(s)) {
+  if (isEmpty(s) || areNonNumbersPresent(s)) {
     return true;
   }
   return false;
@@ -80,7 +79,7 @@ function returnArrayFromNumberedString(str) {
   const arr = splitStringAtCommaReturnArray(str);
   const ret = [];
   for (const item of arr) {
-    ret.push(returnNumberFromString(item));
+    ret.push(cutSpacesReturnNumber(item));
   }
   return ret;
 }
@@ -95,7 +94,7 @@ function changeElementPositionOnDrag(element) {
   };
 }
 
-function areNonNumbersPreset(s) {
+function areNonNumbersPresent(s) {
   const arr = splitStringAtCommaReturnArray(s);
   for (const item of arr) {
     if (isNotANumber(item)) {
@@ -185,7 +184,7 @@ line.addEventListener("click", function (event) {
     return;
   }
   const arr = getArrayFromTextBox();
-  const l = ddLineAtCoordinates(arr);
+  const l = addLineAtCoordinates(arr);
 });
 
 btn.addEventListener("click", function (evt) {
