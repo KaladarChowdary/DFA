@@ -57,8 +57,8 @@ function makeElementInline(element) {
   element.style.display = "inline";
 }
 
-function rotateLine(line, angle) {
-  line.style.transform = `rotate(${angle}deg)`;
+function rotateElementByRad(line, angle) {
+  line.style.transform = `rotate(${angle}rad)`;
 }
 
 function returnMidPointBetweenTwoPoints(arr) {
@@ -212,7 +212,7 @@ function addLineBetweenTwoPoints(arr) {
   const arr = getArrayFromTextBox();
   const l = addLineAtCoordinates(returnMidPointBetweenTwoPoints(arr));
   setLineWidth(l, distanceBetweenTwoPoints(arr));
-  rotateLine(l, angleBetweenTwoPoints(arr));
+  rotateElementByRad(l, angleBetweenTwoPoints(arr));
   addElementToWebPage(l);
 }
 
