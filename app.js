@@ -21,8 +21,8 @@ function setDraggableFalse(element) {
   element.setAttribute("draggable", "false");
 }
 
-function isArrayOfLength2(arr) {
-  return arr.length === 2;
+function isArrayOfLengthN(arr, N) {
+  return arr.length === N;
 }
 
 function cutSpacesReturnNumber(str) {
