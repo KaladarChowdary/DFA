@@ -253,3 +253,25 @@ btn.addEventListener("click", function (evt) {
 // ------------------------------------------------
 
 setDefaultValueinTextBox();
+
+// -------------------------------------------------------
+function returnCircleMidPoint(element) {
+  return [element.offsetLeft + 50, element.offsetTop + 50];
+}
+
+const circle = returnDraggableCircle();
+
+addElementToWebPage(circle);
+
+circle.addEventListener("click", function () {
+  addPointAtCoordinates(returnCircleMidPoint(circle));
+});
+
+function returnDraggableCircle() {
+  const circle = createCirclewithName("state1");
+  makePositionAbsolute(circle);
+  setDraggableTrue(circle);
+  changeElementPositionOnDrag(circle);
+  addElementToWebPage(circle);
+  return circle;
+}
