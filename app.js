@@ -193,7 +193,7 @@ line.addEventListener("click", function (event) {
     return;
   }
   const arr = getArrayFromTextBox();
-  addLineBetweenTwoPoints(arr);
+  addLineBetweenTwoPoints();
 });
 
 btn.addEventListener("click", function (evt) {
@@ -204,16 +204,21 @@ btn.addEventListener("click", function (evt) {
 
 // Add line when points are not parallel
 
-function addLineBetweenTwoPoints(arr) {
+function addLineBetweenTwoPoints() {
   if (isInputWrongForPointer(textBox.value)) {
     alert("Enter Numbers Separated By Commas");
     return;
   }
-  const arr = getArrayFromTextBox();
-  const l = addLineAtCoordinates(returnMidPointBetweenTwoPoints(arr));
-  setLineWidth(l, distanceBetweenTwoPoints(arr));
-  rotateElementByRad(l, angleBetweenTwoPoints(arr));
+  const [x1, y1, x2, y2] = getArrayFromTextBox();
+  const l = addLineAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
+  setLineWidth(l, Math.abs(x1 - x2));
+  rotateElementByRad(l, angleBetweenTwoPoints([x1, y1, x2, y2]));
   addElementToWebPage(l);
+
+  addPointAtCoordinates([x1, y1]);
+  addPointAtCoordinates([x2, y2]);
+  addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
+  addPointAtCoordinates(returnMidPointBetweenTwoPoints([x1, y1, x2, y2]));
 }
 
 function angleBetweenTwoPoints(arr) {
