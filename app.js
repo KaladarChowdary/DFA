@@ -56,8 +56,8 @@ function makeElementInline(element) {
   element.style.display = "inline";
 }
 
-function rotateElementByRad(line, angle) {
-  line.style.transform = `rotate(${angle}rad)`;
+function rotateElementByRad(element, angle) {
+  element.style.transform = `rotate(${angle}rad)`;
 }
 
 function returnMidPointBetweenTwoPoints([x1, y1, x2, y2]) {
@@ -68,11 +68,11 @@ function distanceBetweenTwoPoints([x1, y1, x2, y2]) {
   return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
 
-function setLineWidth(line, width) {
-  line.style.width = width + "px";
+function setElementWidth(element, width) {
+  element.style.width = width + "px";
 }
 
-function angleBetweenTwoPoints([x1, y1, x2, y2]) {
+function angleFromInititalToFinalPoint([x1, y1, x2, y2]) {
   return Math.atan((y2 - y1) / (x2 - x1));
 }
 
@@ -80,6 +80,7 @@ function setBackgroundColor(element, color) {
   element.style.backgroundColor = color;
 }
 
+//Hardcoding Shouldn't be allowed
 function returnCircleMidPoint(element) {
   return [element.offsetLeft + 50, element.offsetTop + 50];
 }
@@ -125,12 +126,6 @@ function returnXOffset([x1, y1, x2, y2]) {
   const distance = distanceBetweenTwoPoints([x1, y1, x2, y2]);
   const hlength = Math.abs(x1 - x2);
   return (distance - hlength) / 2;
-}
-
-function displayMidpointOnClick(element) {
-  element.addEventListener("click", function () {
-    addPointAtCoordinates(returnCircleMidPoint(element));
-  });
 }
 
 // ----------------------------------------------------------------------------------------------
@@ -235,8 +230,8 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
   const l = addLineAtCoordinates(
     initialPointForLineBetweenTwoPoints([x1, y1, x2, y2])
   );
-  setLineWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
-  rotateElementByRad(l, angleBetweenTwoPoints([x1, y1, x2, y2]));
+  setElementWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
+  rotateElementByRad(l, angleFromInititalToFinalPoint([x1, y1, x2, y2]));
   setBackgroundColor(l, "black");
   addElementToWebPage(l);
 
@@ -246,6 +241,13 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
 }
 
 // ----------------------------------------------------------------------------------------------
+function displayMidpointOnClick(element) {
+  element.addEventListener("click", function () {
+    addPointAtCoordinates(returnCircleMidPoint(element));
+  });
+}
+
+// ---------------------------------------------------------------------------
 
 point.addEventListener("click", function (event) {
   if (isInputWrongForPointer(textBox.value)) {
