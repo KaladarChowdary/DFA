@@ -80,12 +80,16 @@ function setBackgroundColor(element, color) {
   element.style.backgroundColor = color;
 }
 
-// function setDefaultValueinTextBox() {
-//   textBox.defaultValue = "500, 100, 900, 200";
-// }
-
 function returnCircleMidPoint(element) {
   return [element.offsetLeft + 50, element.offsetTop + 50];
+}
+
+function setDefaultValueinTextBox() {
+  textBox.defaultValue = "300, 300, 100, 100";
+}
+
+function returnLesserOfTwo(a, b) {
+  return a < b ? a : b;
 }
 
 // ----------------------------------------------------------------------------------------------
@@ -161,9 +165,12 @@ function getArrayFromTextBox() {
   return returnArrayFromNumberedString(arr);
 }
 
-// function initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]) {
-//   return [x1 - returnXOffset([x1, y1, x2, y2]), Math.abs((y1 + y2) / 2)];
-// }
+function initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]) {
+  return [
+    returnLesserOfTwo(x1, x2) - returnXOffset([x1, y1, x2, y2]),
+    Math.abs((y1 + y2) / 2),
+  ];
+}
 
 // ----------------------------------------------------------------------------------------------
 
@@ -224,19 +231,19 @@ function createCirclewithName(name) {
   return circle;
 }
 
-// function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
-//   const l = addLineAtCoordinates(
-//     initialPointForLineBetweenTwoPoints([x1, y1, x2, y2])
-//   );
-//   setLineWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
-//   rotateElementByRad(l, angleBetweenTwoPoints([x1, y1, x2, y2]));
-//   setBackgroundColor(l, "black");
-//   addElementToWebPage(l);
+function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
+  const l = addLineAtCoordinates(
+    initialPointForLineBetweenTwoPoints([x1, y1, x2, y2])
+  );
+  setLineWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
+  rotateElementByRad(l, angleBetweenTwoPoints([x1, y1, x2, y2]));
+  setBackgroundColor(l, "black");
+  addElementToWebPage(l);
 
-//   addPointAtCoordinates([x1, y1]);
-//   addPointAtCoordinates([x2, y2]);
-//   addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
-// }
+  addPointAtCoordinates([x1, y1]);
+  addPointAtCoordinates([x2, y2]);
+  addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
+}
 
 // ----------------------------------------------------------------------------------------------
 
@@ -290,35 +297,4 @@ function pushMidpoint(newCoordinates) {
   }
 }
 
-// -------------------------------------------------------------
-// DEBUG ADD LINE BETWEEN TWO POINTS FUNCTION
-function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
-  const l = addLineAtCoordinates(
-    initialPointForLineBetweenTwoPoints([x1, y1, x2, y2])
-  );
-  addPointAtCoordinates(initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]));
-  setLineWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
-  rotateElementByRad(l, angleBetweenTwoPoints([x1, y1, x2, y2]));
-  console.log(angleBetweenTwoPoints([x1, y1, x2, y2]));
-  setBackgroundColor(l, "black");
-  addElementToWebPage(l);
-
-  addPointAtCoordinates([x1, y1]);
-  addPointAtCoordinates([x2, y2]);
-  addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
-}
-
-function setDefaultValueinTextBox() {
-  textBox.defaultValue = "300, 300, 100, 100";
-}
-
-function returnLesserOfTwo(a, b) {
-  return a < b ? a : b;
-}
-
-function initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]) {
-  return [
-    returnLesserOfTwo(x1, x2) - returnXOffset([x1, y1, x2, y2]),
-    Math.abs((y1 + y2) / 2),
-  ];
-}
+// CLEAN THE CODE, CLEAN THE CODE, CLEAN THE CODE, CLEAN THE CODE, CLEAN THE CODE
