@@ -161,9 +161,9 @@ function getArrayFromTextBox() {
   return returnArrayFromNumberedString(arr);
 }
 
-function initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]) {
-  return [x1 - returnXOffset([x1, y1, x2, y2]), Math.abs((y1 + y2) / 2)];
-}
+// function initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]) {
+//   return [x1 - returnXOffset([x1, y1, x2, y2]), Math.abs((y1 + y2) / 2)];
+// }
 
 // ----------------------------------------------------------------------------------------------
 
@@ -298,7 +298,7 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
   );
   addPointAtCoordinates(initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]));
   setLineWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
-  // rotateElementByRad(l, angleBetweenTwoPoints([x1, y1, x2, y2]));
+  rotateElementByRad(l, angleBetweenTwoPoints([x1, y1, x2, y2]));
   console.log(angleBetweenTwoPoints([x1, y1, x2, y2]));
   setBackgroundColor(l, "black");
   addElementToWebPage(l);
@@ -310,4 +310,15 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
 
 function setDefaultValueinTextBox() {
   textBox.defaultValue = "300, 300, 100, 100";
+}
+
+function returnLesserOfTwo(a, b) {
+  return a < b ? a : b;
+}
+
+function initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]) {
+  return [
+    returnLesserOfTwo(x1, x2) - returnXOffset([x1, y1, x2, y2]),
+    Math.abs((y1 + y2) / 2),
+  ];
 }
