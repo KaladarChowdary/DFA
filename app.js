@@ -233,9 +233,9 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
   setBackgroundColor(l, "black");
   addElementToWebPage(l);
 
-  // addPointAtCoordinates([x1, y1]);
-  // addPointAtCoordinates([x2, y2]);
-  // addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
+  addPointAtCoordinates([x1, y1]);
+  addPointAtCoordinates([x2, y2]);
+  addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
 }
 
 // ----------------------------------------------------------------------------------------------
