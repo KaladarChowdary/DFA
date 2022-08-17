@@ -276,3 +276,16 @@ setDefaultValueinTextBox();
 
 // -------------------------------------------------------
 // ALL CHANGES BELOW THIS LINE
+
+let clickedPointCoordinates = [];
+function pushMidpoint(newCoordinates) {
+  clickedPointCoordinates.push(newCoordinates);
+
+  if (clickedPointCoordinates.length === 2) {
+    addLineBetweenTwoPoints([
+      ...clickedPointCoordinates[0],
+      ...clickedPointCoordinates[1],
+    ]);
+    clickedPointCoordinates = [];
+  }
+}
