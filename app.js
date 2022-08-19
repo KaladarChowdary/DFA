@@ -49,9 +49,11 @@ function returnLesserOfTwo(a, b) {
   return a < b ? a : b;
 }
 
-//Hardcoding Shouldn't be allowed
 function returnCircleMidPoint(element) {
-  return [element.offsetLeft + 50, element.offsetTop + 50];
+  return [
+    element.offsetLeft + element.offsetWidth / 2,
+    element.offsetTop + element.offsetHeight / 2,
+  ];
 }
 
 function setDefaultValueinTextBox() {
@@ -173,6 +175,15 @@ function createCircle() {
   const circle = document.createElement("div");
   circle.classList.add("circle");
   return circle;
+}
+
+function addDraggableCircle() {
+  const circle = createCircle();
+  makePositionAbsolute(circle);
+  setDraggableTrue(circle);
+  changeElementPositionOnDrag(circle);
+  pushMidpointOnClick(circle);
+  addElementToWebPage(circle);
 }
 
 function createPoint() {
