@@ -21,6 +21,14 @@ function setDraggableFalse(element) {
   element.setAttribute("draggable", "false");
 }
 
+function setElementWidth(element, width) {
+  element.style.width = width + "px";
+}
+
+function setBackgroundColor(element, color) {
+  element.style.backgroundColor = color;
+}
+
 function isArrayOfLengthLessThanN(arr, N) {
   return arr.length < N;
 }
@@ -35,6 +43,19 @@ function isEmpty(x) {
 
 function isNotANumber(item) {
   return isNaN(item);
+}
+
+function returnLesserOfTwo(a, b) {
+  return a < b ? a : b;
+}
+
+//Hardcoding Shouldn't be allowed
+function returnCircleMidPoint(element) {
+  return [element.offsetLeft + 50, element.offsetTop + 50];
+}
+
+function setDefaultValueinTextBox() {
+  textBox.defaultValue = "300, 300, 100, 100";
 }
 
 function setElementCoordinatesFromEvent(element, event) {
@@ -68,34 +89,13 @@ function distanceBetweenTwoPoints([x1, y1, x2, y2]) {
   return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
 
-function setElementWidth(element, width) {
-  element.style.width = width + "px";
-}
-
 function angleFromInititalToFinalPoint([x1, y1, x2, y2]) {
   return Math.atan((y2 - y1) / (x2 - x1));
 }
 
-function setBackgroundColor(element, color) {
-  element.style.backgroundColor = color;
-}
-
-//Hardcoding Shouldn't be allowed
-function returnCircleMidPoint(element) {
-  return [element.offsetLeft + 50, element.offsetTop + 50];
-}
-
-function setDefaultValueinTextBox() {
-  textBox.defaultValue = "300, 300, 100, 100";
-}
-
-function returnLesserOfTwo(a, b) {
-  return a < b ? a : b;
-}
-
 // ----------------------------------------------------------------------------------------------
 
-function returnArrayFromNumberedString(arr) {
+function intArrayFromStrArray(arr) {
   const ret = [];
   for (const item of arr) {
     ret.push(cutSpacesReturnNumber(item));
@@ -128,6 +128,12 @@ function returnXOffset([x1, y1, x2, y2]) {
   return (distance - hlength) / 2;
 }
 
+function getArrayFromTextBox() {
+  const s = textBox.value;
+  const arr = splitStringAtCommaReturnArray(s);
+  return intArrayFromStrArray(arr);
+}
+
 // ----------------------------------------------------------------------------------------------
 
 function isInputWrongForPointer(s) {
@@ -154,12 +160,6 @@ function isInputWrongForLine(s) {
   return false;
 }
 
-function getArrayFromTextBox() {
-  const s = textBox.value;
-  const arr = splitStringAtCommaReturnArray(s);
-  return returnArrayFromNumberedString(arr);
-}
-
 function initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]) {
   return [
     returnLesserOfTwo(x1, x2) - returnXOffset([x1, y1, x2, y2]),
@@ -173,16 +173,6 @@ function createCircle() {
   const circle = document.createElement("div");
   circle.classList.add("circle");
   return circle;
-}
-
-function addDraggableCircle() {
-  const circle = createCircle();
-  makePositionAbsolute(circle);
-  setDraggableTrue(circle);
-  changeElementPositionOnDrag(circle);
-  displayMidpointOnClick(circle);
-  pushMidpointOnClick(circle);
-  addElementToWebPage(circle);
 }
 
 function createPoint() {
@@ -234,16 +224,27 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
   rotateElementByRad(l, angleFromInititalToFinalPoint([x1, y1, x2, y2]));
   setBackgroundColor(l, "black");
   addElementToWebPage(l);
-
-  addPointAtCoordinates([x1, y1]);
-  addPointAtCoordinates([x2, y2]);
-  addPointAtCoordinates([x1, Math.abs((y1 + y2) / 2)]);
 }
 
-// ----------------------------------------------------------------------------------------------
-function displayMidpointOnClick(element) {
+// ---------------------------------------------------------------------------
+let clickedPointCoordinates = [];
+function pushMidpoint(newCoordinates) {
+  clickedPointCoordinates.push(newCoordinates);
+
+  if (clickedPointCoordinates.length === 2) {
+    addLineBetweenTwoPoints([
+      ...clickedPointCoordinates[0],
+      ...clickedPointCoordinates[1],
+    ]);
+    clickedPointCoordinates = [];
+  }
+}
+
+// ---------------------------------------------------------------------------
+
+function pushMidpointOnClick(element) {
   element.addEventListener("click", function () {
-    addPointAtCoordinates(returnCircleMidPoint(element));
+    pushMidpoint(returnCircleMidPoint(element));
   });
 }
 
@@ -273,30 +274,4 @@ btn.addEventListener("click", function (evt) {
 
 // ------------------------------------------------
 
-function pushMidpointOnClick(element) {
-  element.addEventListener("click", function () {
-    pushMidpoint(returnCircleMidPoint(element));
-  });
-}
-
-// ------------------------------------------------
-
 setDefaultValueinTextBox();
-
-// -------------------------------------------------------
-// ALL CHANGES BELOW THIS LINE
-
-let clickedPointCoordinates = [];
-function pushMidpoint(newCoordinates) {
-  clickedPointCoordinates.push(newCoordinates);
-
-  if (clickedPointCoordinates.length === 2) {
-    addLineBetweenTwoPoints([
-      ...clickedPointCoordinates[0],
-      ...clickedPointCoordinates[1],
-    ]);
-    clickedPointCoordinates = [];
-  }
-}
-
-// CLEAN THE CODE, CLEAN THE CODE, CLEAN THE CODE, CLEAN THE CODE, CLEAN THE CODE
