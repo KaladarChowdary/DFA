@@ -36,3 +36,36 @@
   width: 20px;
   background-color: darkgreen;
 }
+
+.icon-arrow {
+  width: 250px;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #000;
+  position: relative;
+  top: 50px;
+}
+
+.icon-arrow::after {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 4px;
+  background-color: #000;
+  transform: rotate(45deg);
+  position: absolute;
+  right: -6px;
+  bottom: 13px;
+}
+
+.icon-arrow::before {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 4px;
+  background-color: #000;
+  transform: rotate(-45deg);
+  position: absolute;
+  right: -6px;
+  bottom: -13px;
+}
