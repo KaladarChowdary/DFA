@@ -42,8 +42,9 @@
   height: 4px;
   border-radius: 4px;
   background-color: #000;
-  position: relative;
-  top: 50px;
+  position: absolute;
+  /* top: 50px; */
+  /* transform: rotate(45deg); */
 }
 
 .icon-arrow::after {
@@ -59,6 +60,30 @@
 }
 
 .icon-arrow::before {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 4px;
+  background-color: #000;
+  transform: rotate(-45deg);
+  position: absolute;
+  right: -6px;
+  bottom: -13px;
+}
+
+.l::after {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 4px;
+  background-color: #000;
+  transform: rotate(45deg);
+  position: absolute;
+  right: -6px;
+  bottom: 13px;
+}
+
+.l::before {
   content: "";
   display: inline-block;
   width: 40px;
