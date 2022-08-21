@@ -71,7 +71,7 @@
   bottom: -13px;
 }
 
-/* .l::after {
+.l::after {
   content: "";
   display: inline-block;
   width: 40px;
@@ -93,4 +93,4 @@
   position: absolute;
   right: -6px;
   bottom: -13px;
-} */
+}
