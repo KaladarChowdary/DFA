@@ -57,7 +57,7 @@ function returnCircleMidPoint(element) {
 }
 
 function setDefaultValueinTextBox() {
-  textBox.defaultValue = "300, 300, 100, 100";
+  textBox.defaultValue = "1000, 300, 500, 200";
 }
 
 function setElementCoordinatesFromEvent(element, event) {
