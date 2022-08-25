@@ -293,3 +293,6 @@ btn.addEventListener("click", function (evt) {
 setDefaultValueinTextBox();
 
 //----------------------------------------------------
+function rotateBy180(l) {
+  element.style.transform = `rotate(${Math.PI}rad)`;
+}
