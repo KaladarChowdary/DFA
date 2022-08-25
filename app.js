@@ -227,20 +227,20 @@ function createCirclewithName(name) {
   return circle;
 }
 
-function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
-  const l = addLineAtCoordinates(
-    initialPointForLineBetweenTwoPoints([x1, y1, x2, y2])
-  );
-  setElementWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
-  rotateElementByRad(l, angleFromInititalToFinalPoint([x1, y1, x2, y2]));
-  setBackgroundColor(l, "black");
-  addElementToWebPage(l);
-  // if (x1 > x2) rotateElementByRad(l, Math.PI);
+// function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
+//   const l = addLineAtCoordinates(
+//     initialPointForLineBetweenTwoPoints([x1, y1, x2, y2])
+//   );
+//   setElementWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
+//   rotateElementByRad(l, angleFromInititalToFinalPoint([x1, y1, x2, y2]));
+//   setBackgroundColor(l, "black");
+//   addElementToWebPage(l);
+//   // if (x1 > x2) rotateElementByRad(l, Math.PI);
 
-  addPointAtCoordinates(initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]));
-  addPointAtCoordinates([x1, y1]);
-  addPointAtCoordinates([x2, y2]);
-}
+//   addPointAtCoordinates(initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]));
+//   addPointAtCoordinates([x1, y1]);
+//   addPointAtCoordinates([x2, y2]);
+// }
 
 // ---------------------------------------------------------------------------
 let clickedPointCoordinates = [];
@@ -293,6 +293,27 @@ btn.addEventListener("click", function (evt) {
 setDefaultValueinTextBox();
 
 //----------------------------------------------------
-function rotateBy180(l) {
-  element.style.transform = `rotate(${Math.PI}rad)`;
+function rotateBy180(element, [x1, y1, x2, y2]) {
+  console.log(`Line should rotate by 180`);
+  element.style.transform = `rotate(${
+    Math.PI + angleFromInititalToFinalPoint([x1, y1, x2, y2])
+  }rad)`;
+}
+
+function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
+  const l = addLineAtCoordinates(
+    initialPointForLineBetweenTwoPoints([x1, y1, x2, y2])
+  );
+  setElementWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
+  rotateElementByRad(l, angleFromInititalToFinalPoint([x1, y1, x2, y2]));
+  setBackgroundColor(l, "black");
+  addElementToWebPage(l);
+  // if (x1 > x2) rotateElementByRad(l, Math.PI);
+
+  addPointAtCoordinates(initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]));
+  addPointAtCoordinates([x1, y1]);
+  addPointAtCoordinates([x2, y2]);
+
+  rotateBy180(l, [x1, y1, x2, y2]);
+  console.log(`Ah Hello?`);
 }
