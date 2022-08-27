@@ -302,10 +302,9 @@ function pushMidpointOnClick(element) {
 }
 
 function returnWidth(element) {
-  console.log(element.style.width);
-  return Number.parseFloat(element.style.width);
+  return Number.parseFloat(element.offsetWidth);
 }
 
 function returnHeight(element) {
-  return Number.parseFloat(element.style.height);
+  return Number.parseFloat(element.offsetHeight);
 }
