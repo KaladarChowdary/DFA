@@ -258,11 +258,11 @@ function pushMidpoint(newCoordinates) {
 
 // ---------------------------------------------------------------------------
 
-function pushMidpointOnClick(element) {
-  element.addEventListener("click", function () {
-    pushMidpoint(returnCircleMidPoint(element));
-  });
-}
+// function pushMidpointOnClick(element) {
+//   element.addEventListener("click", function () {
+//     pushMidpoint(returnCircleMidPoint(element));
+//   });
+// }
 
 // ---------------------------------------------------------------------------
 
@@ -291,3 +291,11 @@ btn.addEventListener("click", function (evt) {
 // ------------------------------------------------
 
 setDefaultValueinTextBox();
+
+//--------------------------------------------------
+// Eliminate hardcoding of width and height
+function pushMidpointOnClick(element) {
+  element.addEventListener("click", function () {
+    pushMidpoint(returnCircleMidPoint(element));
+  });
+}
