@@ -297,5 +297,15 @@ setDefaultValueinTextBox();
 function pushMidpointOnClick(element) {
   element.addEventListener("click", function () {
     pushMidpoint(returnCircleMidPoint(element));
+    console.log(returnWidth(element), returnHeight(element));
   });
+}
+
+function returnWidth(element) {
+  console.log(element.style.width);
+  return Number.parseFloat(element.style.width);
+}
+
+function returnHeight(element) {
+  return Number.parseFloat(element.style.height);
 }
