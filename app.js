@@ -308,3 +308,5 @@ function returnWidth(element) {
 function returnHeight(element) {
   return Number.parseFloat(element.offsetHeight);
 }
+
+// [REFACTOR NEW CHANGES AND REFACTOR AGAIN]
