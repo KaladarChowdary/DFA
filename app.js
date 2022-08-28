@@ -251,18 +251,18 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
 }
 
 // ---------------------------------------------------------------------------
-let clickedPointCoordinates = [];
-function pushMidpoint(newCoordinates) {
-  clickedPointCoordinates.push(newCoordinates);
+// let clickedPointCoordinates = [];
+// function pushMidpoint(newCoordinates) {
+//   clickedPointCoordinates.push(newCoordinates);
 
-  if (clickedPointCoordinates.length === 2) {
-    addLineBetweenTwoPoints([
-      ...clickedPointCoordinates[0],
-      ...clickedPointCoordinates[1],
-    ]);
-    clickedPointCoordinates = [];
-  }
-}
+//   if (clickedPointCoordinates.length === 2) {
+//     addLineBetweenTwoPoints([
+//       ...clickedPointCoordinates[0],
+//       ...clickedPointCoordinates[1],
+//     ]);
+//     clickedPointCoordinates = [];
+//   }
+// }
 
 // ---------------------------------------------------------------------------
 
@@ -312,4 +312,20 @@ function circumferencePointsFromCentrePoints(x1, y1, x2, y2, radius) {
   const y = ((y2 - y1) * radius) / distence;
 
   return [x1 + x, y1 + y, x2 - x, y2 - y];
+}
+
+let clickedPointCoordinates = [];
+function pushMidpoint(newCoordinates) {
+  clickedPointCoordinates.push(newCoordinates);
+
+  if (clickedPointCoordinates.length === 2) {
+    addLineBetweenTwoPoints(
+      circumferencePointsFromCentrePoints(
+        ...clickedPointCoordinates[0],
+        ...clickedPointCoordinates[1],
+        50
+      )
+    );
+    clickedPointCoordinates = [];
+  }
 }
