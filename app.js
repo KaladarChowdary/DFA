@@ -49,7 +49,7 @@ function returnLesserOfTwo(a, b) {
   return a < b ? a : b;
 }
 
-function returnCircleMidPoint(element) {
+function returnElementMidPoint(element) {
   return [
     element.offsetLeft + element.offsetWidth / 2,
     element.offsetTop + element.offsetHeight / 2,
@@ -93,6 +93,14 @@ function distanceBetweenTwoPoints([x1, y1, x2, y2]) {
 
 function angleFromInititalToFinalPoint([x1, y1, x2, y2]) {
   return Math.atan((y2 - y1) / (x2 - x1));
+}
+
+function returnWidth(element) {
+  return Number.parseFloat(element.offsetWidth);
+}
+
+function returnHeight(element) {
+  return Number.parseFloat(element.offsetHeight);
 }
 
 // ----------------------------------------------------------------------------------------------
@@ -258,11 +266,11 @@ function pushMidpoint(newCoordinates) {
 
 // ---------------------------------------------------------------------------
 
-// function pushMidpointOnClick(element) {
-//   element.addEventListener("click", function () {
-//     pushMidpoint(returnCircleMidPoint(element));
-//   });
-// }
+function pushMidpointOnClick(element) {
+  element.addEventListener("click", function () {
+    pushMidpoint(returnElementMidPoint(element));
+  });
+}
 
 // ---------------------------------------------------------------------------
 
@@ -293,20 +301,15 @@ btn.addEventListener("click", function (evt) {
 setDefaultValueinTextBox();
 
 //--------------------------------------------------
-// Eliminate hardcoding of width and height
-function pushMidpointOnClick(element) {
-  element.addEventListener("click", function () {
-    pushMidpoint(returnCircleMidPoint(element));
-    console.log(returnWidth(element), returnHeight(element));
-  });
-}
-
-function returnWidth(element) {
-  return Number.parseFloat(element.offsetWidth);
-}
-
-function returnHeight(element) {
-  return Number.parseFloat(element.offsetHeight);
-}
 
 // [REFACTOR NEW CHANGES AND REFACTOR AGAIN]
+
+//--------------------------------------------------
+// Function to return points on circumference from center
+function circumferencePointsFromCentrePoints(x1, y1, x2, y2, radius) {
+  const distence = distanceBetweenTwoPoints([x1, y1, x2, y2]);
+  const x = ((x2 - x1) * radius) / distence;
+  const y = ((y2 - y1) * radius) / distence;
+
+  return [x1 + x, y1 + y, x2 - x, y2 - y];
+}
