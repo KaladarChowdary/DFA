@@ -251,18 +251,18 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
 }
 
 // ---------------------------------------------------------------------------
-// let clickedPointCoordinates = [];
-// function pushMidpoint(newCoordinates) {
-//   clickedPointCoordinates.push(newCoordinates);
+let clickedPointCoordinates = [];
+function pushMidpoint(newCoordinates) {
+  clickedPointCoordinates.push(newCoordinates);
 
-//   if (clickedPointCoordinates.length === 2) {
-//     addLineBetweenTwoPoints([
-//       ...clickedPointCoordinates[0],
-//       ...clickedPointCoordinates[1],
-//     ]);
-//     clickedPointCoordinates = [];
-//   }
-// }
+  if (clickedPointCoordinates.length === 2) {
+    addLineBetweenTwoPoints([
+      ...clickedPointCoordinates[0],
+      ...clickedPointCoordinates[1],
+    ]);
+    clickedPointCoordinates = [];
+  }
+}
 
 // ---------------------------------------------------------------------------
 
