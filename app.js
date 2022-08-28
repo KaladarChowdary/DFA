@@ -243,11 +243,6 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
   rotateElementByRad(l, angleFromInititalToFinalPoint([x1, y1, x2, y2]));
   setBackgroundColor(l, "black");
   addElementToWebPage(l);
-  // if (x1 > x2) rotateElementByRad(l, Math.PI);
-
-  addPointAtCoordinates(initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]));
-  addPointAtCoordinates([x1, y1]);
-  addPointAtCoordinates([x2, y2]);
 }
 
 // ---------------------------------------------------------------------------
