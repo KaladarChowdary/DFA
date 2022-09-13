@@ -311,3 +311,6 @@ function circumferencePointsFromCentrePoints(x1, y1, x2, y2, radius) {
 
   return [x1 + x, y1 + y, x2 - x, y2 - y];
 }
+
+//----------------------------------------------------
+// LOT OF WORK TO DO
