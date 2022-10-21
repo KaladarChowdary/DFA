@@ -21,7 +21,7 @@ function setDraggableFalse(element) {
   element.setAttribute("draggable", "false");
 }
 
-function setElementWidth(element, width) {
+function setElementWidthPixels(element, width) {
   element.style.width = width + "px";
 }
 
@@ -239,7 +239,7 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
   const l = addLineAtCoordinates(
     initialPointForLineBetweenTwoPoints([x1, y1, x2, y2])
   );
-  setElementWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
+  setElementWidthPixels(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
   rotateElementByRad(l, angleFromInititalToFinalPoint([x1, y1, x2, y2]));
   setBackgroundColor(l, "black");
   addElementToWebPage(l);
