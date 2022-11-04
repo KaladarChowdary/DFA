@@ -5,42 +5,52 @@ const [point] = document.getElementsByClassName("point");
 const [line] = document.getElementsByClassName("line");
 const [btn] = document.getElementsByClassName("btn");
 
+// Adds element to webpage
 function addElementToWebPage(element) {
   document.body.appendChild(element);
 }
 
+// Makes element position absolute
 function makePositionAbsolute(element) {
   element.style.position = "absolute";
 }
 
+// Makes element draggable
 function setDraggableTrue(element) {
   element.setAttribute("draggable", "true");
 }
 
+// Stops element being draggable
 function setDraggableFalse(element) {
   element.setAttribute("draggable", "false");
 }
 
+//  Set's element width
 function setElementWidthPixels(element, width) {
   element.style.width = width + "px";
 }
 
+// Set's elements background color
 function setBackgroundColor(element, color) {
   element.style.backgroundColor = color;
 }
 
+// boolean : Weather array is less than given length
 function isArrayOfLengthLessThanN(arr, N) {
   return arr.length < N;
 }
 
+// Returns number after eliminating spaces
 function cutSpacesReturnNumber(str) {
   return Number(str.trim());
 }
 
+// boolean: is the given entity empty
 function isEmpty(x) {
   return x === "";
 }
 
+// boolean: Given entity is not a number right
 function isNotANumber(item) {
   return isNaN(item);
 }
