@@ -21,7 +21,7 @@ function setDraggableFalse(element) {
   element.setAttribute("draggable", "false");
 }
 
-function setElementWidthPixels(element, width) {
+function setElementWidth(element, width) {
   element.style.width = width + "px";
 }
 
@@ -115,13 +115,14 @@ function intArrayFromStrArray(arr) {
 
 function changeElementPositionOnDrag(element) {
   element.ondrag = function (event) {
-    element.style.left = event.pageX + "px";
-    element.style.top = event.pageY + "px";
+    console.log(">>>>Element is being dragged");
+    setElementCoordinatesFromEvent(element, event);
   };
 
   element.ondragend = function (event) {
-    element.style.left = event.pageX + "px";
-    element.style.top = event.pageY + "px";
+    console.log(">>>>Element dragging has ended");
+
+    setElementCoordinatesFromEvent(element, event);
   };
 }
 
@@ -187,6 +188,16 @@ function createCircle() {
   return circle;
 }
 
+function addDraggableCircle() {
+  console.log(">>>>>>>>addDraggableCircle is running");
+  const circle = createCircle();
+  makePositionAbsolute(circle);
+  setDraggableTrue(circle);
+  changeElementPositionOnDrag(circle);
+  pushMidpointOnClick(circle);
+  addElementToWebPage(circle);
+}
+
 function createPoint() {
   const point = document.createElement("div");
   point.classList.add("pt");
@@ -232,10 +243,15 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
   const l = addLineAtCoordinates(
     initialPointForLineBetweenTwoPoints([x1, y1, x2, y2])
   );
-  setElementWidthPixels(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
+  setElementWidth(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
   rotateElementByRad(l, angleFromInititalToFinalPoint([x1, y1, x2, y2]));
   setBackgroundColor(l, "black");
   addElementToWebPage(l);
+  // if (x1 > x2) rotateElementByRad(l, Math.PI);
+
+  addPointAtCoordinates(initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]));
+  addPointAtCoordinates([x1, y1]);
+  addPointAtCoordinates([x2, y2]);
 }
 
 // ---------------------------------------------------------------------------
@@ -303,21 +319,4 @@ function circumferencePointsFromCentrePoints(x1, y1, x2, y2, radius) {
   const y = ((y2 - y1) * radius) / distence;
 
   return [x1 + x, y1 + y, x2 - x, y2 - y];
-}
-
-//----------------------------------------------------
-// LOT OF WORK TO DO
-
-let circles = [];
-
-function addDraggableCircle() {
-  console.log("Creating draggble circle");
-  const circle = createCircle();
-  makePositionAbsolute(circle);
-  setDraggableTrue(circle);
-  changeElementPositionOnDrag(circle);
-  pushMidpointOnClick(circle);
-  addElementToWebPage(circle);
-
-  circles.push(circle);
 }
