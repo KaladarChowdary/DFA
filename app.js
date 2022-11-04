@@ -55,10 +55,12 @@ function isNotANumber(item) {
   return isNaN(item);
 }
 
+// Returns lesser of the two numbers
 function returnLesserOfTwo(a, b) {
   return a < b ? a : b;
 }
 
+// Gives elements mid point
 function returnElementMidPoint(element) {
   return [
     element.offsetLeft + element.offsetWidth / 2,
@@ -66,49 +68,60 @@ function returnElementMidPoint(element) {
   ];
 }
 
+// Set's default value in the text box
 function setDefaultValueinTextBox() {
   textBox.defaultValue = "1000, 300, 500, 200";
 }
 
+// Takes an event and set elements position according to the event
 function setElementCoordinatesFromEvent(element, event) {
   element.style.left = event.pageX + "px";
   element.style.top = event.pageY + "px";
 }
 
+// Set's the element position from the array
 function setElementPostionFromArray(element, [x, y]) {
   element.style.left = x + "px";
   element.style.top = y + "px";
 }
 
+// Splits the string at comma and returns array
 function splitStringAtCommaReturnArray(str) {
   const arr = str.split(",");
   return arr;
 }
 
+//  Makes the element inline
 function makeElementInline(element) {
   element.style.display = "inline";
 }
 
+// Rotates the given element by given radian
 function rotateElementByRad(element, angle) {
   element.style.transform = `rotate(${angle}rad)`;
 }
 
+// Returns the mid point between two points
 function returnMidPointBetweenTwoPoints([x1, y1, x2, y2]) {
   return [(x1 + x2) / 2, (y1 + y2) / 2];
 }
 
+// Returns the distence between two points
 function distanceBetweenTwoPoints([x1, y1, x2, y2]) {
   return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
 
+// Finds the angle from initial point to final point
 function angleFromInititalToFinalPoint([x1, y1, x2, y2]) {
   return Math.atan((y2 - y1) / (x2 - x1));
 }
 
+// Returns the width of the given element
 function returnWidth(element) {
   return Number.parseFloat(element.offsetWidth);
 }
 
+// Returns the height of the given element
 function returnHeight(element) {
   return Number.parseFloat(element.offsetHeight);
 }
