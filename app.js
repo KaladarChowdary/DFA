@@ -350,7 +350,6 @@ function circumferencePointsFromCentrePoints(x1, y1, x2, y2, radius) {
 let circles = [];
 
 function addDraggableCircle() {
-  console.log("Creating draggble circle");
   const circle = createCircle();
   makePositionAbsolute(circle);
   changeElementPositionOnDrag(circle);
