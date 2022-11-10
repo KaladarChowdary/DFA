@@ -128,6 +128,7 @@ function returnHeight(element) {
 
 // ----------------------------------------------------------------------------------------------
 
+// Givens array of integers from the array of string numbers
 function intArrayFromStrArray(arr) {
   const ret = [];
   for (const item of arr) {
@@ -136,18 +137,19 @@ function intArrayFromStrArray(arr) {
   return ret;
 }
 
+// give element to this function, it will begin to drag
 function changeElementPositionOnDrag(element) {
+  setDraggableTrue(element);
   element.ondrag = function (event) {
-    element.style.left = event.pageX + "px";
-    element.style.top = event.pageY + "px";
+    setElementCoordinatesFromEvent(element, event);
   };
 
   element.ondragend = function (event) {
-    element.style.left = event.pageX + "px";
-    element.style.top = event.pageY + "px";
+    setElementCoordinatesFromEvent(element, event);
   };
 }
 
+// Returns true if non numbers are present
 function areNonNumbersPresent(arr) {
   for (const item of arr) {
     if (isNotANumber(item)) {
@@ -157,13 +159,15 @@ function areNonNumbersPresent(arr) {
   return false;
 }
 
+// Return's x offset, whatever that is
 function returnXOffset([x1, y1, x2, y2]) {
   const distance = distanceBetweenTwoPoints([x1, y1, x2, y2]);
   const hlength = Math.abs(x1 - x2);
   return (distance - hlength) / 2;
 }
 
-function getArrayFromTextBox() {
+// Get's the string from textbox and returns array of numbers
+function getArrayFromTextBox(textBox) {
   const s = textBox.value;
   const arr = splitStringAtCommaReturnArray(s);
   return intArrayFromStrArray(arr);
@@ -171,6 +175,7 @@ function getArrayFromTextBox() {
 
 // ----------------------------------------------------------------------------------------------
 
+// Checks whether is input wrong for a pointer
 function isInputWrongForPointer(s) {
   const arr = splitStringAtCommaReturnArray(s);
   if (
@@ -183,6 +188,7 @@ function isInputWrongForPointer(s) {
   return false;
 }
 
+// Checks whether input is wrong for line
 function isInputWrongForLine(s) {
   const arr = splitStringAtCommaReturnArray(s);
   if (
@@ -195,6 +201,7 @@ function isInputWrongForLine(s) {
   return false;
 }
 
+// Gives initial point for line between two points
 function initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]) {
   return [
     returnLesserOfTwo(x1, x2) - returnXOffset([x1, y1, x2, y2]),
@@ -204,18 +211,22 @@ function initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]) {
 
 // ----------------------------------------------------------------------------------------------
 
+// Creates circle
+// Creates div with class circle
 function createCircle() {
   const circle = document.createElement("div");
   circle.classList.add("circle");
   return circle;
 }
 
+// Creates point
 function createPoint() {
   const point = document.createElement("div");
   point.classList.add("pt");
   return point;
 }
 
+// Add point at specified coordinates
 function addPointAtCoordinates(arr) {
   const pt = createPoint();
   makePositionAbsolute(pt);
@@ -223,12 +234,14 @@ function addPointAtCoordinates(arr) {
   addElementToWebPage(pt);
 }
 
+// Creates line
 function createLine() {
   const line = document.createElement("div");
   line.classList.add("l");
   return line;
 }
 
+// Creates line from specific coordinates
 function addLineAtCoordinates(arr) {
   const line = createLine();
   makePositionAbsolute(line);
@@ -237,12 +250,14 @@ function addLineAtCoordinates(arr) {
   return line;
 }
 
+// Creates a label(text) with given string
 function createTextElement(name) {
   const text = document.createElement("p");
   text.textContent = name;
   return text;
 }
 
+// Creates circle with name
 function createCirclewithName(name) {
   const circle = createCircle();
   const text = createTextElement(name);
@@ -251,6 +266,7 @@ function createCirclewithName(name) {
   return circle;
 }
 
+// Adds line between two points
 function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
   const l = addLineAtCoordinates(
     initialPointForLineBetweenTwoPoints([x1, y1, x2, y2])
@@ -293,7 +309,7 @@ point.addEventListener("click", function (event) {
     alert("Enter Numbers Separated By Commas");
     return;
   }
-  const arr = getArrayFromTextBox();
+  const arr = getArrayFromTextBox(textBox);
   addPointAtCoordinates(arr);
 });
 
@@ -302,7 +318,7 @@ line.addEventListener("click", function (event) {
     alert("Enter Numbers Separated By Commas");
     return;
   }
-  const arr = getArrayFromTextBox();
+  const arr = getArrayFromTextBox(textBox);
   addLineBetweenTwoPoints(arr);
 });
 
@@ -337,10 +353,28 @@ function addDraggableCircle() {
   console.log("Creating draggble circle");
   const circle = createCircle();
   makePositionAbsolute(circle);
-  setDraggableTrue(circle);
   changeElementPositionOnDrag(circle);
   pushMidpointOnClick(circle);
   addElementToWebPage(circle);
+  addTripleClickEvent(circle);
 
   circles.push(circle);
 }
+
+function visited(circle) {
+  setBackgroundColor(circle, "green");
+}
+
+function addTripleClickEvent(circle) {
+  circle.addEventListener("click", function (evt) {
+    if (evt.detail === 3) {
+      visited(this);
+    }
+  });
+}
+
+// window.addEventListener("click", function (evt) {
+//   if (evt.detail === 3) {
+//     alert("triple click!");
+//   }
+// });
