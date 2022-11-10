@@ -356,7 +356,6 @@ function addDraggableCircle() {
   changeElementPositionOnDrag(circle);
   pushMidpointOnClick(circle);
   addElementToWebPage(circle);
-  addTripleClickEvent(circle);
 
   circles.push(circle);
 }
@@ -364,17 +363,3 @@ function addDraggableCircle() {
 function visited(circle) {
   setBackgroundColor(circle, "green");
 }
-
-function addTripleClickEvent(circle) {
-  circle.addEventListener("click", function (evt) {
-    if (evt.detail === 3) {
-      visited(this);
-    }
-  });
-}
-
-// window.addEventListener("click", function (evt) {
-//   if (evt.detail === 3) {
-//     alert("triple click!");
-//   }
-// });
