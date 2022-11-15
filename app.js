@@ -373,6 +373,10 @@ function pushElement(element) {
         50
       )
     );
+
+    console.log(clickedCircles[0]);
+    console.log(clickedCircles[1]);
+
     clickedCircles = [];
   }
 }
