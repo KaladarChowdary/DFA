@@ -221,17 +221,6 @@ function circumferencePointsFromCentrePoints(x1, y1, x2, y2, radius) {
 
 // ----------------------------------------------------------------------------------------------
 
-function addDraggableCircle() {
-  const circle = createCircle();
-  makePositionAbsolute(circle);
-  changeElementPositionOnDrag(circle);
-  pushMidpointOnClick(circle);
-  addElementToWebPage(circle);
-
-  AllCircles.push(circle);
-  setFirstCircle(circle);
-}
-
 // Creates circle
 // Creates div with class circle
 function createCircle() {
@@ -343,7 +332,6 @@ lineBtn.addEventListener("click", function (event) {
 
 btn.addEventListener("click", function (evt) {
   addDraggableCircle();
-  console.log(getFirstCircle());
 });
 
 // ------------------------------------------------
@@ -365,3 +353,41 @@ function setFirstCircle(circle) {
 function getFirstCircle() {
   return firstCircle;
 }
+
+let clickedCircles = [];
+function pushElementOnClick(element) {
+  element.addEventListener("click", function () {
+    console.log(`${element} is clicked`);
+    pushElement(element);
+  });
+}
+
+function pushElement(element) {
+  clickedCircles.push(element);
+
+  if (clickedCircles.length === 2) {
+    addLineBetweenTwoPoints(
+      circumferencePointsFromCentrePoints(
+        ...returnElementMidPoint(clickedCircles[0]),
+        ...returnElementMidPoint(clickedCircles[1]),
+        50
+      )
+    );
+    clickedCircles = [];
+  }
+}
+
+// ---------------------------------------------------------
+function addDraggableCircle() {
+  const circle = createCircle();
+  makePositionAbsolute(circle);
+  changeElementPositionOnDrag(circle);
+  // pushMidpointOnClick(circle);
+  pushElementOnClick(circle);
+  addElementToWebPage(circle);
+
+  AllCircles.push(circle);
+  setFirstCircle(circle);
+}
+
+// ----------------------------------------------------------------
