@@ -1,8 +1,10 @@
 //Actual html elements first
+let AllCircles = [];
+let clickedPointCoordinates = [];
 
 const [textBox] = document.getElementsByClassName("textbox");
-const [point] = document.getElementsByClassName("point");
-const [line] = document.getElementsByClassName("line");
+const [pointBtn] = document.getElementsByClassName("point");
+const [lineBtn] = document.getElementsByClassName("line");
 const [btn] = document.getElementsByClassName("btn");
 
 // Adds element to webpage
@@ -209,7 +211,26 @@ function initialPointForLineBetweenTwoPoints([x1, y1, x2, y2]) {
   ];
 }
 
+function circumferencePointsFromCentrePoints(x1, y1, x2, y2, radius) {
+  const distence = distanceBetweenTwoPoints([x1, y1, x2, y2]);
+  const x = ((x2 - x1) * radius) / distence;
+  const y = ((y2 - y1) * radius) / distence;
+
+  return [x1 + x, y1 + y, x2 - x, y2 - y];
+}
+
 // ----------------------------------------------------------------------------------------------
+
+function addDraggableCircle() {
+  const circle = createCircle();
+  makePositionAbsolute(circle);
+  changeElementPositionOnDrag(circle);
+  pushMidpointOnClick(circle);
+  addElementToWebPage(circle);
+
+  AllCircles.push(circle);
+  setFirstCircle(circle);
+}
 
 // Creates circle
 // Creates div with class circle
@@ -277,8 +298,14 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
   addElementToWebPage(l);
 }
 
+function pushMidpointOnClick(element) {
+  element.addEventListener("click", function () {
+    pushMidpoint(returnElementMidPoint(element));
+  });
+}
+
 // ---------------------------------------------------------------------------
-let clickedPointCoordinates = [];
+
 function pushMidpoint(newCoordinates) {
   clickedPointCoordinates.push(newCoordinates);
 
@@ -296,15 +323,7 @@ function pushMidpoint(newCoordinates) {
 
 // ---------------------------------------------------------------------------
 
-function pushMidpointOnClick(element) {
-  element.addEventListener("click", function () {
-    pushMidpoint(returnElementMidPoint(element));
-  });
-}
-
-// ---------------------------------------------------------------------------
-
-point.addEventListener("click", function (event) {
+pointBtn.addEventListener("click", function (event) {
   if (isInputWrongForPointer(textBox.value)) {
     alert("Enter Numbers Separated By Commas");
     return;
@@ -313,7 +332,7 @@ point.addEventListener("click", function (event) {
   addPointAtCoordinates(arr);
 });
 
-line.addEventListener("click", function (event) {
+lineBtn.addEventListener("click", function (event) {
   if (isInputWrongForPointer(textBox.value)) {
     alert("Enter Numbers Separated By Commas");
     return;
@@ -324,6 +343,7 @@ line.addEventListener("click", function (event) {
 
 btn.addEventListener("click", function (evt) {
   addDraggableCircle();
+  console.log(getFirstCircle());
 });
 
 // ------------------------------------------------
@@ -332,33 +352,16 @@ setDefaultValueinTextBox();
 
 //--------------------------------------------------
 
-// [REFACTOR NEW CHANGES AND REFACTOR AGAIN]
-
-//--------------------------------------------------
-// Function to return points on circumference from center
-function circumferencePointsFromCentrePoints(x1, y1, x2, y2, radius) {
-  const distence = distanceBetweenTwoPoints([x1, y1, x2, y2]);
-  const x = ((x2 - x1) * radius) / distence;
-  const y = ((y2 - y1) * radius) / distence;
-
-  return [x1 + x, y1 + y, x2 - x, y2 - y];
-}
-
-//----------------------------------------------------
-// LOT OF WORK TO DO
-
-let circles = [];
-
-function addDraggableCircle() {
-  const circle = createCircle();
-  makePositionAbsolute(circle);
-  changeElementPositionOnDrag(circle);
-  pushMidpointOnClick(circle);
-  addElementToWebPage(circle);
-
-  circles.push(circle);
-}
-
 function visited(circle) {
   setBackgroundColor(circle, "green");
+}
+
+let firstCircle = -1;
+
+function setFirstCircle(circle) {
+  if (firstCircle === -1) firstCircle = circle;
+}
+
+function getFirstCircle() {
+  return firstCircle;
 }
