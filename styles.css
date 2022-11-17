@@ -19,6 +19,10 @@
   align-items: center;
 }
 
+.first_circle {
+  background-color: rgb(255, 213, 0);
+}
+
 .textbox {
   margin: 10px 0px;
 }

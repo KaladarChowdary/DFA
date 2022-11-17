@@ -346,7 +346,10 @@ function visited(circle) {
 
 let firstCircle = -1;
 function setFirstCircle(circle) {
-  if (firstCircle === -1) firstCircle = circle;
+  if (firstCircle === -1) {
+    firstCircle = circle;
+    circle.classList.add("first_circle");
+  }
 }
 
 let lastCircle = -1;
