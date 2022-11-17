@@ -24,6 +24,7 @@ function setDraggableTrue(element) {
 
 // Stops element being draggable
 function setDraggableFalse(element) {
+  console.log(`Making draggable false`);
   element.setAttribute("draggable", "false");
 }
 
@@ -141,8 +142,8 @@ function intArrayFromStrArray(arr) {
 
 // give element to this function, it will begin to drag
 function changeElementPositionOnDrag(element) {
-  setDraggableTrue(element);
   element.ondrag = function (event) {
+    console.log(element.getAttribute("draggable"));
     setElementCoordinatesFromEvent(element, event);
   };
 
@@ -367,7 +368,6 @@ function getFirstCircle() {
 let clickedCircles = [];
 function pushElementOnClick(element) {
   element.addEventListener("click", function () {
-    console.log(`${element} is clicked`);
     pushElement(element);
   });
 }
@@ -400,11 +400,19 @@ function displayAllCircles() {
   for (let circle of AllCircles) console.log(circle);
 }
 
+function makeAllUndraggable() {
+  for (let circle of AllCircles) {
+    setDraggableFalse(circle);
+  }
+}
+
 // ---------------------------------------------------------
 let flag = true;
 function addDraggableCircle() {
   const circle = createCircle();
   makePositionAbsolute(circle);
+  setDraggableTrue(circle);
+
   changeElementPositionOnDrag(circle);
   pushElementOnClick(circle);
 
@@ -418,6 +426,7 @@ function addDraggableCircle() {
 document.addEventListener("click", (evt) => {
   if (evt.detail === 3) {
     displayAllCircles();
+    makeAllUndraggable();
   }
 });
 
