@@ -142,7 +142,6 @@ function intArrayFromStrArray(arr) {
 // give element to this function, it will begin to drag
 function changeElementPositionOnDrag(element) {
   element.ondrag = function (event) {
-    console.log(element.getAttribute("draggable"));
     setElementCoordinatesFromEvent(element, event);
   };
 
@@ -375,16 +374,14 @@ function pushElement(element) {
   clickedCircles.push(element);
 
   if (clickedCircles.length === 2) {
-    addLineBetweenTwoPoints(
-      circumferencePointsFromCentrePoints(
-        ...returnElementMidPoint(clickedCircles[0]),
-        ...returnElementMidPoint(clickedCircles[1]),
-        50
-      )
-    );
-
-    console.log(clickedCircles[0]);
-    console.log(clickedCircles[1]);
+    if (askForSymbol(...clickedCircles))
+      addLineBetweenTwoPoints(
+        circumferencePointsFromCentrePoints(
+          ...returnElementMidPoint(clickedCircles[0]),
+          ...returnElementMidPoint(clickedCircles[1]),
+          50
+        )
+      );
 
     clickedCircles = [];
   }
@@ -405,8 +402,15 @@ function makeAllUndraggable() {
   }
 }
 
-function askForSymbol(cArray) {
-  alert("Enter either 0 or 1");
+function askForSymbol(circle1, circle2) {
+  let input = prompt("Enter either 0 or 1");
+  console.log(`Input is ${input}, type of input is ${typeof input}`);
+  console.log(circle1, typeof circle1);
+  console.log(circle2, typeof circle2);
+  circle1[input] = circle2;
+
+  console.log("This should return another circle", circle1[input]);
+  return true;
 }
 
 // ---------------------------------------------------------
