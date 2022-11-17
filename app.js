@@ -24,7 +24,6 @@ function setDraggableTrue(element) {
 
 // Stops element being draggable
 function setDraggableFalse(element) {
-  console.log(`Making draggable false`);
   element.setAttribute("draggable", "false");
 }
 
@@ -406,6 +405,10 @@ function makeAllUndraggable() {
   }
 }
 
+function askForSymbol(cArray) {
+  alert("Enter either 0 or 1");
+}
+
 // ---------------------------------------------------------
 let flag = true;
 function addDraggableCircle() {
@@ -425,8 +428,6 @@ function addDraggableCircle() {
 
 document.addEventListener("click", (evt) => {
   if (evt.detail === 3) {
-    displayAllCircles();
-    makeAllUndraggable();
   }
 });
 
