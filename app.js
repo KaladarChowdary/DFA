@@ -391,7 +391,17 @@ function pushElement(element) {
   }
 }
 
+function displayFirstAndLast() {
+  console.log(`First circle is `, getFirstCircle());
+  console.log(`Last circle is `, getLastCircle());
+}
+
+function displayAllCircles() {
+  for (let circle of AllCircles) console.log(circle);
+}
+
 // ---------------------------------------------------------
+let flag = true;
 function addDraggableCircle() {
   const circle = createCircle();
   makePositionAbsolute(circle);
@@ -403,9 +413,12 @@ function addDraggableCircle() {
 
   AllCircles.push(circle);
   addElementToWebPage(circle);
-
-  console.log(`First circle is `, getFirstCircle());
-  console.log(`Last circle is `, getLastCircle());
 }
+
+document.addEventListener("click", (evt) => {
+  if (evt.detail === 3) {
+    displayAllCircles();
+  }
+});
 
 // ----------------------------------------------------------------
