@@ -345,9 +345,16 @@ function visited(circle) {
 }
 
 let firstCircle = -1;
-
 function setFirstCircle(circle) {
   if (firstCircle === -1) firstCircle = circle;
+}
+
+let lastCircle = -1;
+function setLastCircle(circle) {
+  lastCircle = circle;
+}
+function getLastCircle() {
+  return lastCircle;
 }
 
 function getFirstCircle() {
@@ -386,12 +393,16 @@ function addDraggableCircle() {
   const circle = createCircle();
   makePositionAbsolute(circle);
   changeElementPositionOnDrag(circle);
-  // pushMidpointOnClick(circle);
   pushElementOnClick(circle);
-  addElementToWebPage(circle);
+
+  setFirstCircle(circle);
+  setLastCircle(circle);
 
   AllCircles.push(circle);
-  setFirstCircle(circle);
+  addElementToWebPage(circle);
+
+  console.log(`First circle is `, getFirstCircle());
+  console.log(`Last circle is `, getLastCircle());
 }
 
 // ----------------------------------------------------------------
