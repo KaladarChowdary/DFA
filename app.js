@@ -363,8 +363,8 @@ function getLastCircle() {
 let clickedCircles = [];
 
 function pushCircleOnClick(element) {
-  element.addEventListener("click", function () {
-    pushCircle(element);
+  element.addEventListener("click", function (evt) {
+    if (evt.detail === 2) pushCircle(element);
   });
 }
 
@@ -388,10 +388,7 @@ function pushCircle(element) {
   if (clickedCircles.length === 2) {
     if (askForSymbol(...clickedCircles)) {
       addLineBetweenTwoPoints(pointsForLineFromCircleArray(clickedCircles));
-    } else {
-      alert("Operation cancelled, enter either zero or 1");
     }
-
     clickedCircles = [];
   }
 }
@@ -436,17 +433,35 @@ function recurGetFirstChar(str) {
 }
 
 function travel(circle, inputString) {
-  console.log(circle);
-  console.log(inputString);
-  console.log("-");
+  console.log(circle, circle.acceptable);
+
   changeOnVisit(circle);
   const input = inputString[0];
   inputString = inputString.slice(1);
 
-  if (circle[input] === undefined) return;
+  console.log(`input is ${input}`);
+
+  if (input === undefined) {
+    if (circle.acceptable) {
+      console.log(`String is accepted`);
+    } else {
+      console.log(`String is not accepted`);
+    }
+
+    return;
+  }
+
+  if (circle[input] === undefined) {
+    console.log(`String is not accepted`);
+    return;
+  }
 
   travel(circle[input], inputString);
 }
+
+runBtn.addEventListener("click", function () {
+  travel(getFirstCircle(), inputBox.value);
+});
 
 // --------------------------------------------------------------------------------------------
 
@@ -458,6 +473,7 @@ function addDraggableCircle() {
   addIndexToCircle(circle);
 
   pushCircleOnClick(circle);
+  makeFinalOnTripleClick(circle);
 
   adjustFirstAndLastCircle(circle);
 
@@ -468,9 +484,18 @@ function addDraggableCircle() {
 
 document.addEventListener("click", (evt) => {
   if (evt.detail === 3) {
-    travel(getFirstCircle(), inputBox.value);
   }
 });
+
+function makeFinalOnTripleClick(circle) {
+  circle.acceptable = false;
+  circle.addEventListener("click", function (evt) {
+    if (evt.detail === 3) {
+      circle.acceptable = true;
+      circle.classList.add("acceptable_circle");
+    }
+  });
+}
 
 function recursivelyVisit(circle) {
   if (!circle) return;

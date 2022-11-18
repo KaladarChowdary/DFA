@@ -1,6 +1,7 @@
 .circle {
   width: 150px;
   height: 150px;
+  border: 2px solid black;
   border-radius: 50%;
   background-color: red;
 
@@ -11,6 +12,10 @@
 
 .first_circle {
   background-color: rgb(255, 213, 0);
+}
+
+.acceptable_circle {
+  border: 10px solid black;
 }
 
 .textbox {
