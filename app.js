@@ -286,23 +286,6 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
 
 // ---------------------------------------------------------------------------
 
-function pushMidpoint(newCoordinates) {
-  clickedPointCoordinates.push(newCoordinates);
-
-  if (clickedPointCoordinates.length === 2) {
-    addLineBetweenTwoPoints(
-      circumferencePointsFromCentrePoints(
-        ...clickedPointCoordinates[0],
-        ...clickedPointCoordinates[1],
-        50
-      )
-    );
-    clickedPointCoordinates = [];
-  }
-}
-
-// ---------------------------------------------------------------------------
-
 pointBtn.addEventListener("click", function (event) {
   if (isInputWrongForPointer(textBox.value)) {
     alert("Enter Numbers Separated By Commas");
@@ -325,13 +308,9 @@ btn.addEventListener("click", function (evt) {
   addDraggableCircle();
 });
 
-// ------------------------------------------------
-
-setDefaultValueinTextBox();
-
 //--------------------------------------------------
 
-function visited(circle) {
+function changeOnVisit(circle) {
   setBackgroundColor(circle, "green");
 }
 
@@ -343,6 +322,10 @@ function setFirstCircle(circle) {
   }
 }
 
+function getFirstCircle() {
+  return firstCircle;
+}
+
 let lastCircle = -1;
 function setLastCircle(circle) {
   lastCircle = circle;
@@ -351,22 +334,19 @@ function getLastCircle() {
   return lastCircle;
 }
 
-function getFirstCircle() {
-  return firstCircle;
-}
-
 let clickedCircles = [];
-function pushElementOnClick(element) {
+
+function pushCircleOnClick(element) {
   element.addEventListener("click", function () {
-    pushElement(element);
+    pushCircle(element);
   });
 }
 
-function pushElement(element) {
+function pushCircle(element) {
   clickedCircles.push(element);
 
   if (clickedCircles.length === 2) {
-    if (askForSymbol(...clickedCircles))
+    if (askForSymbol(...clickedCircles)) {
       addLineBetweenTwoPoints(
         circumferencePointsFromCentrePoints(
           ...returnElementMidPoint(clickedCircles[0]),
@@ -374,6 +354,9 @@ function pushElement(element) {
           50
         )
       );
+    } else {
+      alert("Operation cancelled, enter either zero or 1");
+    }
 
     clickedCircles = [];
   }
@@ -396,13 +379,12 @@ function makeAllUndraggable() {
 
 function askForSymbol(circle1, circle2) {
   let input = prompt("Enter either 0 or 1");
-  console.log(`Input is ${input}, type of input is ${typeof input}`);
-  console.log(circle1, typeof circle1);
-  console.log(circle2, typeof circle2);
-  circle1[input] = circle2;
-
-  console.log("This should return another circle", circle1[input]);
-  return true;
+  if (input in ["0", "1"]) {
+    circle1[input] = circle2;
+    return true;
+  } else {
+    return false;
+  }
 }
 
 // ---------------------------------------------------------
@@ -413,7 +395,7 @@ function addDraggableCircle() {
   setDraggableTrue(circle);
 
   changeElementPositionOnDrag(circle);
-  pushElementOnClick(circle);
+  pushCircleOnClick(circle);
 
   setFirstCircle(circle);
   setLastCircle(circle);
@@ -430,5 +412,7 @@ document.addEventListener("click", (evt) => {
   if (evt.detail === 3) {
   }
 });
+
+setDefaultValueinTextBox();
 
 // ----------------------------------------------------------------
