@@ -497,11 +497,4 @@ function makeFinalOnTripleClick(circle) {
   });
 }
 
-function recursivelyVisit(circle) {
-  if (!circle) return;
-  changeOnVisit(circle);
-  recursivelyVisit(circle["0"]);
-  recursivelyVisit(circle["1"]);
-}
-
 // ----------------------------------------------------------------
