@@ -263,6 +263,7 @@ function createLineAtCoordinates(arr) {
 function createLabelWithName(name) {
   const text = document.createElement("p");
   text.textContent = name;
+  text.classList.add("insideText");
   return text;
 }
 
@@ -425,7 +426,7 @@ function addDraggableCircle() {
 
   AllCircles.push(circle);
 
-  let name = createLabelWithName("kaladar");
+  let name = createLabelWithName("1");
   addLabelToCircle(circle, name);
 
   addElementToWebPage(circle);

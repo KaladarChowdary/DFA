@@ -9,8 +9,8 @@
 }
 
 .circle {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   background-color: red;
 
@@ -97,4 +97,9 @@
   position: absolute;
   right: -6px;
   bottom: -13px;
+}
+
+.insideText {
+  font-size: 50px;
+  color: black;
 }
