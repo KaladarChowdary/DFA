@@ -387,6 +387,12 @@ function askForSymbol(circle1, circle2) {
   }
 }
 
+let num = 0;
+function nextNumberAsString() {
+  num++;
+  return `${num}`;
+}
+
 // ---------------------------------------------------------
 let flag = true;
 function addDraggableCircle() {
@@ -402,7 +408,7 @@ function addDraggableCircle() {
 
   AllCircles.push(circle);
 
-  let name = createLabelWithName("1");
+  let name = createLabelWithName(nextNumberAsString());
   addLabelToCircle(circle, name);
 
   addElementToWebPage(circle);
