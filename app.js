@@ -236,7 +236,7 @@ function createPoint() {
 }
 
 // Add point at specified coordinates
-function addPointAtCoordinates(arr) {
+function createPointAtCoordinates(arr) {
   const pt = createPoint();
   makePositionAbsolute(pt);
   setElementPostionFromArray(pt, arr);
@@ -251,7 +251,7 @@ function createLine() {
 }
 
 // Creates line from specific coordinates
-function addLineAtCoordinates(arr) {
+function createLineAtCoordinates(arr) {
   const line = createLine();
   makePositionAbsolute(line);
   setElementPostionFromArray(line, arr);
@@ -260,24 +260,21 @@ function addLineAtCoordinates(arr) {
 }
 
 // Creates a label(text) with given string
-function createTextElement(name) {
+function createLabelWithName(name) {
   const text = document.createElement("p");
   text.textContent = name;
   return text;
 }
 
-// Creates circle with name
-function createCirclewithName(name) {
-  const circle = createCircle();
-  const text = createTextElement(name);
-  makeElementInline(text);
-  circle.appendChild(text);
+function addLabelToCircle(circle, label) {
+  makeElementInline(label);
+  circle.appendChild(label);
   return circle;
 }
 
 // Adds line between two points
 function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
-  const l = addLineAtCoordinates(
+  const l = createLineAtCoordinates(
     initialPointForLineBetweenTwoPoints([x1, y1, x2, y2])
   );
   setElementWidthPixels(l, distanceBetweenTwoPoints([x1, y1, x2, y2]));
@@ -317,7 +314,7 @@ pointBtn.addEventListener("click", function (event) {
     return;
   }
   const arr = getIntArrayFromTextbox(textBox);
-  addPointAtCoordinates(arr);
+  createPointAtCoordinates(arr);
 });
 
 lineBtn.addEventListener("click", function (event) {
@@ -427,6 +424,10 @@ function addDraggableCircle() {
   setLastCircle(circle);
 
   AllCircles.push(circle);
+
+  let name = createLabelWithName("kaladar");
+  addLabelToCircle(circle, name);
+
   addElementToWebPage(circle);
 }
 
