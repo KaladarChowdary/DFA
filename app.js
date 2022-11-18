@@ -2,9 +2,9 @@
 let AllCircles = [];
 let clickedPointCoordinates = [];
 
-const [textBox] = document.getElementsByClassName("textbox");
-const [pointBtn] = document.getElementsByClassName("point");
-const [lineBtn] = document.getElementsByClassName("line");
+// const [textBox] = document.getElementsByClassName("textbox");
+// const [pointBtn] = document.getElementsByClassName("point");
+// const [lineBtn] = document.getElementsByClassName("line");
 const [btn] = document.getElementsByClassName("btn");
 
 // Adds element to webpage
@@ -71,9 +71,9 @@ function returnElementMidPoint(element) {
 }
 
 // Set's default value in the text box
-function setDefaultValueinTextBox() {
-  textBox.defaultValue = "1000, 300, 500, 200";
-}
+// function setDefaultValueinTextBox() {
+//   textBox.defaultValue = "1000, 300, 500, 200";
+// }
 
 // Takes an event and set elements position according to the event
 function setElementCoordinatesFromEvent(element, event) {
@@ -309,23 +309,23 @@ function addToListOfAllCircles(circle) {
 
 // ---------------------------------------------------------------------------
 
-pointBtn.addEventListener("click", function (event) {
-  if (isInputWrongForPointer(textBox.value)) {
-    alert("Enter Numbers Separated By Commas");
-    return;
-  }
-  const arr = getIntArrayFromTextbox(textBox);
-  createPointAtCoordinates(arr);
-});
+// pointBtn.addEventListener("click", function (event) {
+//   if (isInputWrongForPointer(textBox.value)) {
+//     alert("Enter Numbers Separated By Commas");
+//     return;
+//   }
+//   const arr = getIntArrayFromTextbox(textBox);
+//   createPointAtCoordinates(arr);
+// });
 
-lineBtn.addEventListener("click", function (event) {
-  if (isInputWrongForPointer(textBox.value)) {
-    alert("Enter Numbers Separated By Commas");
-    return;
-  }
-  const arr = getIntArrayFromTextbox(textBox);
-  addLineBetweenTwoPoints(arr);
-});
+// lineBtn.addEventListener("click", function (event) {
+//   if (isInputWrongForPointer(textBox.value)) {
+//     alert("Enter Numbers Separated By Commas");
+//     return;
+//   }
+//   const arr = getIntArrayFromTextbox(textBox);
+//   addLineBetweenTwoPoints(arr);
+// });
 
 btn.addEventListener("click", function (evt) {
   addDraggableCircle();
@@ -454,7 +454,5 @@ function recursivelyVisit(circle) {
   recursivelyVisit(circle["0"]);
   recursivelyVisit(circle["1"]);
 }
-
-setDefaultValueinTextBox();
 
 // ----------------------------------------------------------------
