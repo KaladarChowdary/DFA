@@ -425,21 +425,12 @@ function nextNumberAsString() {
 }
 
 // --------------------------------------------------------------------------------------------
-
-function recurGetFirstChar(str) {
-  if (str === "") return;
-  console.log(str[0]);
-  recurGetFirstChar(str.slice(1));
-}
+// REFACTOR THE CODE FOR TRAVEL, TOO LONG
 
 function travel(circle, inputString) {
-  console.log(circle, circle.acceptable);
-
   changeOnVisit(circle);
   const input = inputString[0];
   inputString = inputString.slice(1);
-
-  console.log(`input is ${input}`);
 
   if (input === undefined) {
     if (circle.acceptable) {
@@ -463,6 +454,16 @@ runBtn.addEventListener("click", function () {
   travel(getFirstCircle(), inputBox.value);
 });
 
+function makeFinalOnTripleClick(circle) {
+  circle.acceptable = false;
+  circle.addEventListener("click", function (evt) {
+    if (evt.detail === 3) {
+      circle.acceptable = true;
+      circle.classList.add("acceptable_circle");
+    }
+  });
+}
+
 // --------------------------------------------------------------------------------------------
 
 function addDraggableCircle() {
@@ -480,21 +481,6 @@ function addDraggableCircle() {
   addToListOfAllCircles(circle);
 
   addElementToWebPage(circle);
-}
-
-document.addEventListener("click", (evt) => {
-  if (evt.detail === 3) {
-  }
-});
-
-function makeFinalOnTripleClick(circle) {
-  circle.acceptable = false;
-  circle.addEventListener("click", function (evt) {
-    if (evt.detail === 3) {
-      circle.acceptable = true;
-      circle.classList.add("acceptable_circle");
-    }
-  });
 }
 
 // ----------------------------------------------------------------
