@@ -365,7 +365,7 @@ function pushCircleOnClick(element) {
   });
 }
 
-function pointsFromCirclesForLine(circleArr) {
+function midPointsOfTwoCircles(circleArr) {
   return [
     ...returnElementMidPoint(clickedCircles[0]),
     ...returnElementMidPoint(clickedCircles[1]),
@@ -374,7 +374,7 @@ function pointsFromCirclesForLine(circleArr) {
 
 function pointsForLineFromCircleArray(circleArr) {
   return circumferencePointsFromCentrePoints(
-    ...pointsFromCirclesForLine(clickedCircles),
+    ...midPointsOfTwoCircles(clickedCircles),
     50
   );
 }
