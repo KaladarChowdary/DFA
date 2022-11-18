@@ -168,7 +168,7 @@ function returnXOffset([x1, y1, x2, y2]) {
 }
 
 // Get's the string from textbox and returns array of numbers
-function getArrayFromTextBox(textBox) {
+function getIntArrayFromTextbox(textBox) {
   const s = textBox.value;
   const arr = splitStringAtCommaReturnArray(s);
   return intArrayFromStrArray(arr);
@@ -316,7 +316,7 @@ pointBtn.addEventListener("click", function (event) {
     alert("Enter Numbers Separated By Commas");
     return;
   }
-  const arr = getArrayFromTextBox(textBox);
+  const arr = getIntArrayFromTextbox(textBox);
   addPointAtCoordinates(arr);
 });
 
@@ -325,7 +325,7 @@ lineBtn.addEventListener("click", function (event) {
     alert("Enter Numbers Separated By Commas");
     return;
   }
-  const arr = getArrayFromTextBox(textBox);
+  const arr = getIntArrayFromTextbox(textBox);
   addLineBetweenTwoPoints(arr);
 });
 
