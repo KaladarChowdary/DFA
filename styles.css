@@ -8,6 +8,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  transition-property: background-color;
+  transition-duration: 2s;
 }
 
 .first_circle {

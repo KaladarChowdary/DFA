@@ -429,21 +429,22 @@ function nextNumberAsString() {
 
 function travel(circle, inputString) {
   changeOnVisit(circle);
+
   const input = inputString[0];
   inputString = inputString.slice(1);
 
   if (input === undefined) {
     if (circle.acceptable) {
-      console.log(`String is accepted`);
+      displayLater(`String is accepted`);
     } else {
-      console.log(`String is not accepted`);
+      displayLater(`String is not accepted`);
     }
 
     return;
   }
 
   if (circle[input] === undefined) {
-    console.log(`String is not accepted`);
+    displayLater(`String is not accepted`);
     return;
   }
 
@@ -483,4 +484,15 @@ function addDraggableCircle() {
   addElementToWebPage(circle);
 }
 
+document.addEventListener("click", (evt) => {
+  if (evt.detail === 3) {
+  }
+});
+
 // ----------------------------------------------------------------
+
+function displayLater(str) {
+  setTimeout(() => {
+    alert(str);
+  }, 1000);
+}
