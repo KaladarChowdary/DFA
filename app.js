@@ -2,6 +2,9 @@
 let AllCircles = [];
 let clickedPointCoordinates = [];
 
+const inputBox = document.querySelector(".inputBox");
+const runBtn = document.querySelector(".runBtn");
+
 // const [textBox] = document.getElementsByClassName("textbox");
 // const [pointBtn] = document.getElementsByClassName("point");
 // const [lineBtn] = document.getElementsByClassName("line");
@@ -426,6 +429,27 @@ function nextNumberAsString() {
 
 // --------------------------------------------------------------------------------------------
 
+function recurGetFirstChar(str) {
+  if (str === "") return;
+  console.log(str[0]);
+  recurGetFirstChar(str.slice(1));
+}
+
+function travel(circle, inputString) {
+  console.log(circle);
+  console.log(inputString);
+  console.log("-");
+  changeOnVisit(circle);
+  const input = inputString[0];
+  inputString = inputString.slice(1);
+
+  if (circle[input] === undefined) return;
+
+  travel(circle[input], inputString);
+}
+
+// --------------------------------------------------------------------------------------------
+
 function addDraggableCircle() {
   const circle = createCircle();
 
@@ -444,7 +468,7 @@ function addDraggableCircle() {
 
 document.addEventListener("click", (evt) => {
   if (evt.detail === 3) {
-    recursivelyVisit(getFirstCircle());
+    travel(getFirstCircle(), inputBox.value);
   }
 });
 
