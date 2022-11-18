@@ -284,6 +284,29 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
   addElementToWebPage(l);
 }
 
+// --------------------------------------------------------------------------------------------
+
+function addIndexToCircle(circle) {
+  let str = nextNumberAsString();
+  let name = createLabelWithName(str);
+  addLabelToCircle(circle, name);
+}
+
+function intializeForDragging(circle) {
+  makePositionAbsolute(circle);
+  setDraggableTrue(circle);
+  changeElementPositionOnDrag(circle);
+}
+
+function adjustFirstAndLastCircle(circle) {
+  setFirstCircle(circle);
+  setLastCircle(circle);
+}
+
+function addToListOfAllCircles(circle) {
+  AllCircles.push(circle);
+}
+
 // ---------------------------------------------------------------------------
 
 pointBtn.addEventListener("click", function (event) {
@@ -393,29 +416,7 @@ function nextNumberAsString() {
   return `${num}`;
 }
 
-// ---------------------------------------------------------
-let flag = true;
-
-function addIndexToCircle(circle) {
-  let str = nextNumberAsString();
-  let name = createLabelWithName(str);
-  addLabelToCircle(circle, name);
-}
-
-function intializeForDragging(circle) {
-  makePositionAbsolute(circle);
-  setDraggableTrue(circle);
-  changeElementPositionOnDrag(circle);
-}
-
-function adjustFirstAndLastCircle(circle) {
-  setFirstCircle(circle);
-  setLastCircle(circle);
-}
-
-function addToListOfAllCircles(circle) {
-  AllCircles.push(circle);
-}
+// --------------------------------------------------------------------------------------------
 
 function addDraggableCircle() {
   const circle = createCircle();
@@ -435,8 +436,16 @@ function addDraggableCircle() {
 
 document.addEventListener("click", (evt) => {
   if (evt.detail === 3) {
+    recursivelyVisit(getFirstCircle());
   }
 });
+
+function recursivelyVisit(circle) {
+  if (!circle) return;
+  changeOnVisit(circle);
+  recursivelyVisit(circle["0"]);
+  recursivelyVisit(circle["1"]);
+}
 
 setDefaultValueinTextBox();
 
