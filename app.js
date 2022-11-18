@@ -365,18 +365,26 @@ function pushCircleOnClick(element) {
   });
 }
 
+function pointsFromCirclesForLine(circleArr) {
+  return [
+    ...returnElementMidPoint(clickedCircles[0]),
+    ...returnElementMidPoint(clickedCircles[1]),
+  ];
+}
+
+function pointsForLineFromCircleArray(circleArr) {
+  return circumferencePointsFromCentrePoints(
+    ...pointsFromCirclesForLine(clickedCircles),
+    50
+  );
+}
+
 function pushCircle(element) {
   clickedCircles.push(element);
 
   if (clickedCircles.length === 2) {
     if (askForSymbol(...clickedCircles)) {
-      addLineBetweenTwoPoints(
-        circumferencePointsFromCentrePoints(
-          ...returnElementMidPoint(clickedCircles[0]),
-          ...returnElementMidPoint(clickedCircles[1]),
-          50
-        )
-      );
+      addLineBetweenTwoPoints(pointsForLineFromCircleArray(clickedCircles));
     } else {
       alert("Operation cancelled, enter either zero or 1");
     }
