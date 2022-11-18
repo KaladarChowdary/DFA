@@ -395,10 +395,18 @@ function nextNumberAsString() {
 
 // ---------------------------------------------------------
 let flag = true;
+
+function addIndexToCircle(circle) {
+  let str = nextNumberAsString();
+  let name = createLabelWithName(str);
+  addLabelToCircle(circle, name);
+}
+
 function addDraggableCircle() {
   const circle = createCircle();
   makePositionAbsolute(circle);
   setDraggableTrue(circle);
+  addIndexToCircle(circle);
 
   changeElementPositionOnDrag(circle);
   pushCircleOnClick(circle);
@@ -407,9 +415,6 @@ function addDraggableCircle() {
   setLastCircle(circle);
 
   AllCircles.push(circle);
-
-  let name = createLabelWithName(nextNumberAsString());
-  addLabelToCircle(circle, name);
 
   addElementToWebPage(circle);
 }
