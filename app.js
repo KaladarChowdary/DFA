@@ -262,8 +262,8 @@ function createLineAtCoordinates(arr) {
 // Creates a label(text) with given string
 function createLabelWithName(name) {
   const text = document.createElement("p");
-  text.textContent = name;
   text.classList.add("insideText");
+  text.textContent = name;
   return text;
 }
 
@@ -282,12 +282,6 @@ function addLineBetweenTwoPoints([x1, y1, x2, y2]) {
   rotateElementByRad(l, angleFromInititalToFinalPoint([x1, y1, x2, y2]));
   setBackgroundColor(l, "black");
   addElementToWebPage(l);
-}
-
-function pushMidpointOnClick(element) {
-  element.addEventListener("click", function () {
-    pushMidpoint(returnElementMidPoint(element));
-  });
 }
 
 // ---------------------------------------------------------------------------
