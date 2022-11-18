@@ -402,19 +402,33 @@ function addIndexToCircle(circle) {
   addLabelToCircle(circle, name);
 }
 
-function addDraggableCircle() {
-  const circle = createCircle();
+function intializeForDragging(circle) {
   makePositionAbsolute(circle);
   setDraggableTrue(circle);
-  addIndexToCircle(circle);
-
   changeElementPositionOnDrag(circle);
-  pushCircleOnClick(circle);
+}
 
+function adjustFirstAndLastCircle(circle) {
   setFirstCircle(circle);
   setLastCircle(circle);
+}
 
+function addToListOfAllCircles(circle) {
   AllCircles.push(circle);
+}
+
+function addDraggableCircle() {
+  const circle = createCircle();
+
+  intializeForDragging(circle);
+
+  addIndexToCircle(circle);
+
+  pushCircleOnClick(circle);
+
+  adjustFirstAndLastCircle(circle);
+
+  addToListOfAllCircles(circle);
 
   addElementToWebPage(circle);
 }
