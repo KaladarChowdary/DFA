@@ -496,3 +496,5 @@ function displayLater(str) {
     alert(str);
   }, 1000);
 }
+
+// Gotta add reset function after RUN
