@@ -10,11 +10,11 @@
   align-items: center;
 
   transition-property: background-color;
-  transition-duration: 2s;
+  transition-duration: 1.5s;
 }
 
 .first_circle {
-  background-color: rgb(255, 213, 0);
+  background-color: yellowgreen;
 }
 
 .acceptable_circle {

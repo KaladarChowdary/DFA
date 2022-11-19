@@ -440,11 +440,13 @@ function travel(circle, inputString) {
       displayLater(`String is not accepted`);
     }
 
+    setTimeout(resetDisplay, 1000);
     return;
   }
 
   if (circle[input] === undefined) {
     displayLater(`String is not accepted`);
+    setTimeout(resetDisplay, 1000);
     return;
   }
 
@@ -498,3 +500,16 @@ function displayLater(str) {
 }
 
 // Gotta add reset function after RUN
+
+function makeAllCirclesRed() {
+  for (let circle of AllCircles) setBackgroundColor(circle, "red");
+}
+
+function makeFirstCircleYellow() {
+  setBackgroundColor(getFirstCircle(), "yellowgreen");
+}
+
+function resetDisplay() {
+  makeAllCirclesRed();
+  makeFirstCircleYellow();
+}
