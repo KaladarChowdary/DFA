@@ -486,11 +486,6 @@ function addDraggableCircle() {
   addElementToWebPage(circle);
 }
 
-document.addEventListener("click", (evt) => {
-  if (evt.detail === 3) {
-  }
-});
-
 // ----------------------------------------------------------------
 
 function displayLater(str) {
@@ -502,7 +497,9 @@ function displayLater(str) {
 // Gotta add reset function after RUN
 
 function makeAllCirclesRed() {
-  for (let circle of AllCircles) setBackgroundColor(circle, "red");
+  for (let circle of AllCircles) {
+    setBackgroundColor(circle, "red");
+  }
 }
 
 function makeFirstCircleYellow() {
